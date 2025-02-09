@@ -1,0 +1,43 @@
+version: '3.1'
+services:
+  odoo:
+    image: odoo:16.0
+    container_name: tuna_erp
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - "8870:8070"
+      - "8873:8073"
+    environment:
+      - GEVENT_SUPPORT=True
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - /home/ubuntu/docker/tuna_erp/config:/etc/odoo
+      - /home/ubuntu/docker/tuna_erp/addons:/mnt/extra-addons
+    command: --load=web,queue_job
+  db:
+    image: postgres:14
+    container_name: tuna_erp_db
+    ports:
+      - "5833:5432"
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgres:/usr/lib/postgresql/data
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+  redis:
+    image: redis:6.0
+    container_name: tuna_erp_redis
+    restart: always
+    ports:
+      - "6880:6379"
+    volumes:
+      - ./redis:/data
+volumes:
+  odoo-web-data:
+  odoo-db-data:

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="uom_tree" model="ir.ui.view">
+        <field name="name">Uom Tree</field>
+        <field name="model">uom</field>
+        <field name="arch" type="xml">
+            <tree string="单位">
+                <field name="name" optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

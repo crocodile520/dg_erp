@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jl_reconciliation,access_jl_reconciliation,model_jl_reconciliation,,1,1,1,1
+access_jl_reconciliation_line,access_jl_reconciliation_line,model_jl_reconciliation_line,,1,1,1,1

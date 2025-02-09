@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+       <record id="sell_order_out_view_tree" model="ir.ui.view">
+            <field name="name">Sell Order Out Tree</field>
+            <field name="model">sell.order.out</field>
+            <field name="arch" type="xml">
+                <tree string="销售发货单" delete="0">
+                    <field name="name" optional="show"/>
+                    <field name="order_id" optional="show"/>
+                    <field name="user_id" optional="show"/>
+                    <field name="ref" optional="show"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="partner_code" optional="show"/>
+                    <field name="date" optional="show"/>
+                    <field name="state" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="sell_order_out_view_form" model="ir.ui.view">
+            <field name="name"> Sell Order Out Form</field>
+            <field name="model">sell.order.out</field>
+            <field name="arch" type="xml">
+                <form string="销售发货单明细行" class="o_sale_order" duplicate="1" delete="0">
+                    <header>
+                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
+                        <button name="button_cancel" states="draft" string="作废" type="object" icon="fa-times"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                name="action_rec_view"
+                                class="oe_stat_button"
+                                icon="fa-address-card" attrs="{'invisible':['|', ('state', 'in', ('draft')), ('rec_count', '=', 0)]}">
+                                <field name="rec_count" widget="statinfo" string="对账单"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="order_id" optional="show" readonly="1"/>
+                                <field name="user_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="delivery_number" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_code" optional="show"/>
+                                <field name="ref" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="main_mobile" optional="show"/>
+                                <field name="main_contact" optional="show"/>
+                                <field name="address" optional="show"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="销售发货单明细">
+                                <field name='line_ids' attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree string="销售发货单明细" editable='bottom'>
+                                        <field name="ref" optional="show"/>
+                                        <field name="goods_id" optional="show"/>
+                                        <field name="describe" optional="show"/>
+                                        <field name="specs" optional="show"/>
+                                        <field name="surface" optional="show"/>
+                                        <field name="uom_id" optional="show"/>
+                                        <field name="warehouse_id" optional="show"/>
+                                        <field name="delivery_date" optional="show"/>
+                                        <field name="weight" optional="show" sum="数量"/>
+                                        <field name="qty" optional="show" sum="数量"/>
+                                        <field name="price" invisible="1" readonly="1"/>
+                                        <field name="tax_price" invisible="1" readonly="1"/>
+                                        <field name="amount" optional="show" sum="金额" readonly="1"/>
+                                        <field name="tax_rate" invisible="1"/>
+                                        <field name="tax_amount" invisible="1" sum="税额" readonly="1"/>
+                                        <field name="subtotal" invisible="1" sum="价税合计" readonly="1"/>
+                                        <field name="ms1_qty" optional="show" sum="数量" readonly="1"/>
+                                        <field name="gms1_qty" optional="show" sum="数量" readonly="1"/>
+                                        <field name="note" optional="show"/>
+                                        <field name="state" invisible='1'/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="note" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}" placeholder="备注"/>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id='sell_order_out_tree_search' model='ir.ui.view'>
+            <field name='name'>sell.order.out.search</field>
+            <field name='model'>sell.order.out</field>
+                <field name='arch' type='xml'>
+                    <search string='销售发货单搜索'>
+                        <field name="name" optional="show"/>
+                        <field name="order_id" optional="show"/>
+                        <field name="user_id" optional="show"/>
+                        <field name="ref" optional="show"/>
+                        <field name="partner_id" optional="show"/>
+                        <filter name='draft' string='草稿' domain="[('state','=','draft')]"/>
+                        <filter name='done' string='确认' domain="[('state','=','done')]"/>
+                    </search>
+                </field>
+        </record>
+    </data>
+</odoo>

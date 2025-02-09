@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--根菜单-->
+        <menuitem id="jl_programme_menu" name="生产计划业务"/>
+        <menuitem id="jl_programme_root_menu" name="生产计划管理" parent="jl_programme_menu" sequence="1"/>
+
+        <record id="jl_mes_plm_programme_action" model="ir.actions.act_window">
+            <field name="name">生产计划表</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.plm.programme</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_mes_plm_programme_menu" name="生产计划表" action="jl_mes_plm_programme_action" parent="jl_programme_root_menu" sequence="10"/>
+    </data>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--根菜单-->
+        <menuitem id="jinling_warehouse" name="仓库业务"/>
+        <menuitem id="warehouse_root" name="仓库管理" parent="jinling_warehouse" sequence="1"/>
+        <menuitem id="warehouse_report" name="报表" parent="jinling_warehouse" sequence="2"/>
+        <menuitem id="warehouse_set" name="设置" parent="jinling_warehouse" sequence="3"/>
+
+        <record id="warehouse_action" model="ir.actions.act_window">
+            <field name="name">仓库</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">warehouse</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="warehouse_menu" name="仓库" action="warehouse_action" parent="warehouse_set" sequence="10"/>
+
+        <record id='jl_warehouse_balance_report_action' model='ir.actions.act_window' >
+        <field name='name'>库存余额表</field>
+        <field name='res_model'>jl.warehouse.balance.report</field>
+        <field name='view_mode'>tree</field>
+        <field name='view_id' ref='jl_warehouse_balance_report_tree' />
+        <field name="target">main</field>
+        </record>
+        <menuitem id="jl_warehouse_balance_report_menu" name="库存余额表" action="jl_warehouse_balance_report_action" parent="warehouse_report" sequence="10"/>
+
+
+        <menuitem id="jl_warehouse_mes_plm_menu" name="生产入库单" action="jinling_manufacture.mes_plm_in_action" parent="warehouse_root" sequence="10"/>
+<!--        <menuitem id="jl_warehouse_mes_plm_picking_menu" name="生产领料单" action="jinling_manufacture.mes_plm_picking_action" parent="warehouse_root" sequence="20"/>-->
+        <menuitem id="jl_warehouse_mes_plm_refund_menu" name="生产退料单" action="jinling_manufacture.mes_plm_refund_action" parent="warehouse_root" sequence="30"/>
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+		<record id="jl_mes_plm_programme_key_from" model="ir.ui.view">
+				<field name="name">jl.mes.plm.programme.key.form</field>
+				<field name="model">jl.mes.plm.programme.key</field>
+				<field name="arch" type="xml">
+					<form>
+						<p>请按锁定按钮</p>
+						<footer>
+							<button name="button_done"  string="锁定" type="object" class="oe_highlight"/>
+							 或者
+							<button string="取消" class="oe_link" special="cancel"/>
+						</footer>
+					</form>
+				</field>
+		</record>
+		<record id="jl_mes_plm_programme_unlock_key_from" model="ir.ui.view">
+				<field name="name">jl.mes.plm.programme.unlock.key.form</field>
+				<field name="model">jl.mes.plm.programme.unlock.key</field>
+				<field name="arch" type="xml">
+					<form>
+						<p>请按解锁按钮</p>
+						<footer>
+							<button name="button_done"  string="解锁" type="object" class="oe_highlight"/>
+							 或者
+							<button string="取消" class="oe_link" special="cancel"/>
+						</footer>
+					</form>
+				</field>
+		</record>
+		<act_window id="jl_mes_plm_programme_key_ation"
+			name='批量锁定'
+			res_model="jl.mes.plm.programme.key"
+			binding_model="jl.mes.plm.programme"
+			view_mode="form"
+			target="new"
+			/>
+		<act_window id="jl_mes_plm_programme_unlock_key_ation"
+			name='批量解锁'
+			res_model="jl.mes.plm.programme.unlock.key"
+			binding_model="jl.mes.plm.programme"
+			view_mode="form"
+			target="new"
+			/>
+	</data>
+</openerp>

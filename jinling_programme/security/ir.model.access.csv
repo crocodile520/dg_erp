@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jl_mes_plm_programme,access_jl_mes_plm_programme,model_jl_mes_plm_programme,,1,1,1,1
+access_jl_mes_plm_programme_key,access_jl_mes_plm_programme_key,model_jl_mes_plm_programme_key,,1,1,1,1
+access_jl_mes_plm_programme_unlock_key,access_jl_mes_plm_programme_unlock_key,model_jl_mes_plm_programme_unlock_key,,1,1,1,1

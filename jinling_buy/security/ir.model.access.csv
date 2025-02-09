@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_supplier,access_supplier,model_supplier,,1,1,1,1
+access_jl_buy_apply,access_jl_buy_apply,model_jl_buy_apply,,1,1,1,1
+access_jl_buy_apply_line,access_jl_buy_apply_line,model_jl_buy_apply_line,,1,1,1,1
+access_jl_buy_order,access_jl_buy_order,model_jl_buy_order,,1,1,1,1
+access_jl_buy_order_line,access_jl_buy_order_line,model_jl_buy_order_line,,1,1,1,1
+access_jl_buy_warehousing,access_jl_buy_warehousing,model_jl_buy_warehousing,,1,1,1,1
+access_jl_buy_payment_apply,access_jl_buy_payment_apply,model_jl_buy_payment_apply,,1,1,1,1
+access_jl_buy_payment_apply_line,access_jl_buy_payment_apply_line,model_jl_buy_payment_apply_line,,1,1,1,1

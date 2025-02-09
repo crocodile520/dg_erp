@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="goods_class_view_tree" model="ir.ui.view">
+        <field name="name">Goods Class</field>
+        <field name="model">goods.class</field>
+        <field name="arch" type="xml">
+            <tree string="商品分类" delete="0">
+                <field name="name" optional="show"/>
+                <field name="note" optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

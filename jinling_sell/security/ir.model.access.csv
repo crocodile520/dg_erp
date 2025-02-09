@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sell_order,access_sell_order,model_sell_order,,1,1,1,1
+access_sell_order_line,access_sell_order_line,model_sell_order_line,,1,1,1,1
+access_sell_apply,access_sell_apply,model_sell_apply,,1,1,1,1
+access_sell_apply_line,access_sell_apply_line,model_sell_apply_line,,1,1,1,1
+access_sell_order_out,access_sell_order_out,model_sell_order_out,,1,1,1,1
+access_sell_order_out_line,access_sell_order_out_line,model_sell_order_out_line,,1,1,1,1
+access_sell_order_review,access_sell_order_review,model_sell_order_review,,1,1,1,1
+access_sell_order_review_line,access_sell_order_review_line,model_sell_order_review_line,,1,1,1,1

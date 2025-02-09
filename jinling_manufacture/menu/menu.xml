@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="manufacture_menu" name="制造中心"/>
+        <menuitem id="manufacture_root_menu" name="生产管理" parent="manufacture_menu" sequence="1"/>
+        <menuitem id="manufacture_setting_menu" name="设置" parent="manufacture_menu" sequence="2"/>
+
+        <menuitem id="manufacture_goods_menu" name="商品" action="jinling_goods.goods_action" parent="jinling_manufacture.manufacture_setting_menu" sequence="10"/>
+
+        <record id="mes_plm_action" model="ir.actions.act_window">
+            <field name="name">生产工单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.plm</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_plm_menu" name="生产工单" action="mes_plm_action" parent="jinling_manufacture.manufacture_root_menu" sequence="10"/>
+
+        <record id="mes_plm_in_action" model="ir.actions.act_window">
+            <field name="name">生产入库单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.plm.in</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_plm_in_menu" name="生产入库单" action="mes_plm_in_action" parent="jinling_manufacture.manufacture_root_menu" sequence="20"/>
+
+<!--        <record id="mes_plm_picking_action" model="ir.actions.act_window">-->
+<!--            <field name="name">生产领料单</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">jl.mes.plm.picking</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="context">{'search_default_draft': 1}</field>-->
+<!--        </record>-->
+<!--        <menuitem id="mes_plm_picking_menu" name="生产领料单" action="mes_plm_picking_action" parent="jinling_manufacture.manufacture_root_menu" sequence="30"/>-->
+
+        <record id="mes_plm_refund_action" model="ir.actions.act_window">
+            <field name="name">生产退料单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.plm.refund</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_plm_refund_menu" name="生产退料单" action="mes_plm_refund_action" parent="jinling_manufacture.manufacture_root_menu" sequence="40"/>
+
+    </data>
+</odoo>

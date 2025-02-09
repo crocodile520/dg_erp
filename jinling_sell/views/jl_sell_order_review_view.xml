@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sell_order_review_view_tree" model="ir.ui.view">
+            <field name="name">Sell Order Review Tree</field>
+            <field name="model">sell.order.review</field>
+            <field name="arch" type="xml">
+                <tree string="销售评审单" delete="0">
+                    <field name="name" optional="show"/>
+                    <field name="order_id" optional="show"/>
+                    <field name="user_id" optional="show"/>
+                    <field name="date" optional="show"/>
+                    <field name="delivery_date" optional="show"/>
+                    <field name="state" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sell_order_review_view_form" model="ir.ui.view">
+            <field name="name"> Sell Order Review Form</field>
+            <field name="model">sell.order.review</field>
+            <field name="arch" type="xml">
+                <form string="销售评审单明细行" class="o_sale_order" duplicate="1" delete="0">
+                    <header>
+                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
+                        <button name="button_cancel" states="draft" string="作废" type="object" icon="fa-times"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                    </header>
+                    <sheet>
+<!--                        <div class="oe_button_box" name="button_box">-->
+<!--                        <button type="object"-->
+<!--                            name="action_sell_order_out_view"-->
+<!--                            class="oe_stat_button"-->
+<!--                            icon="fa-truck" attrs="{'invisible':['|', ('state', 'in', ('draft')), ('order_out_count', '=', 0)]}">-->
+<!--                            <field name="order_out_count" widget="statinfo" string="销售发货单"/>-->
+<!--                        </button>-->
+<!--                        </div>-->
+                        <group>
+                            <group>
+                                <field name="order_id" optional="show" readonly="1"/>
+                                <field name="company_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_code" optional="show"/>
+                                <field name="ref" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="main_mobile" optional="show"/>
+                                <field name="main_contact" optional="show"/>
+                                <field name="address" optional="show"/>
+                            </group>
+                            <group>
+                                <field name="user_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="currency_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="delivery_date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="warehouse_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="销售评审单明细">
+                                <field name='line_ids' attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree string="销售评审单明细" editable='bottom'>
+                                        <field name="ref" optional="show"/>
+                                        <field name="goods_id" optional="show"/>
+                                        <field name="describe" optional="show"/>
+                                        <field name="specs" optional="show"/>
+                                        <field name="surface" optional="show"/>
+                                        <field name="uom_id" optional="show"/>
+                                        <field name="qty" optional="show" sum="数量"/>
+                                        <field name="prediction_date" optional="show"/>
+                                        <field name="delivery_date" optional="show"/>
+                                        <field name="note" optional="show"/>
+                                        <field name="state" invisible='1'/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="note" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}" placeholder="备注"/>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id='sell_order_review_tree_search' model='ir.ui.view'>
+            <field name='name'>sell.order.review.search</field>
+            <field name='model'>sell.order.review</field>
+                <field name='arch' type='xml'>
+                    <search string='销售评审单搜索'>
+                        <field name="name" optional="show"/>
+                        <field name="order_id" optional="show"/>
+                        <field name="user_id" optional="show"/>
+                        <field name="ref" optional="show"/>
+                        <field name="partner_id" optional="show"/>
+                        <filter name='draft' string='草稿' domain="[('state','=','draft')]"/>
+                        <filter name='done' string='确认' domain="[('state','=','done')]"/>
+                    </search>
+                </field>
+        </record>
+    </data>
+</odoo>

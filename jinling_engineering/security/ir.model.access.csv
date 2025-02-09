@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tool,access_tool,model_tool,,1,1,1,1
+access_jl_engineering,access_jl_engineering,model_jl_engineering,,1,1,1,1
+access_jl_engineering_line,access_jl_engineering_line,model_jl_engineering_line,,1,1,1,1

@@ -1,0 +1,21 @@
+{
+    'name': '金凌电子 采购模块',
+    'author': 'Tuna团队',
+    'category': 'jinling_erp',
+    'description':'用于金凌电子采购管理',
+    'version': '16.0',
+    'depends': ['mail','jinling_warehouse','jinling_goods',],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'views/supplier_view.xml',
+        'views/jl_buy_apply_view.xml',
+        'views/jl_buy_order_view.xml',
+        'views/jl_buy_warehousing_view.xml',
+        'views/jl_buy_payment_apply_view.xml',
+        'menu/menu.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

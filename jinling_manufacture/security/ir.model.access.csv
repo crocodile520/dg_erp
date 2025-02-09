@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jl_mes_plm,access_jl_mes_plm,model_jl_mes_plm,,1,1,1,1
+access_jl_mes_plm_line,access_jl_mes_plm_line,model_jl_mes_plm_line,,1,1,1,1
+access_jl_mes_plm_in,access_jl_mes_plm_in,model_jl_mes_plm_in,,1,1,1,1
+access_jl_mes_plm_refund,access_jl_mes_plm_refund,model_jl_mes_plm_refund,,1,1,1,1
+access_jl_mes_plm_refund_line,access_jl_mes_plm_refund_line,model_jl_mes_plm_refund_line,,1,1,1,1
+access_test,access_test,model_test,,1,1,1,1
