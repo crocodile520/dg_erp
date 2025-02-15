@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <report-->
+<!--            id="report_buy_order_print"-->
+<!--            model="jl.buy.order"-->
+<!--            string="采购合同订单"-->
+<!--            name="jinling_buy.report_buy_order_template"-->
+<!--            print_report_name="'采购合同订单'+str(object.name)"-->
+<!--            report_type='qweb-pdf'-->
+<!--    />-->
+</odoo>

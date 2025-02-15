@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!--根菜单-->
-        <menuitem id="jinling_logistics" name="物流业务"/>
+        <menuitem id="jinling_logistics" name="物流业务" groups="jinling_logistics.jinling_logistics_groups"/>
         <menuitem id="jinling_logistics_root" name="物流管理" parent="jinling_logistics" sequence="1"/>
 
         <record id="logistics_action" model="ir.actions.act_window">
@@ -12,6 +12,6 @@
             <field name="context">{'search_default_draft': 1}</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="logistics_menu" name="物流订单" action="logistics_action" parent="jinling_logistics_root" sequence="10"/>
+        <menuitem id="logistics_menu" name="物流订单" action="logistics_action" parent="jinling_logistics_root" sequence="10" groups="jinling_logistics.jinling_logistics_groups"/>
     </data>
 </odoo>

@@ -6,6 +6,7 @@
     'version': '16.0',
     'depends': ['mail','jinling_manufacture'],
     'data': [
+        'security/jinling_programme_group.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/jl_mes_plm_programme_view.xml',

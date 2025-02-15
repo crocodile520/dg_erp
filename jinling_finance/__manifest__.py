@@ -6,6 +6,7 @@
     'version': '16.0',
     'depends': ['mail','jinling_sell'],
     'data': [
+        'security/jinling_finance_group.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/jl_reconciliation_view.xml',

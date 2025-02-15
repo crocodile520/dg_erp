@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!--根菜单-->
-        <menuitem id="jinling_warehouse" name="仓库业务"/>
+        <menuitem id="jinling_warehouse" name="仓库业务" groups="jinling_warehouse.jinling_warehouse_groups"/>
         <menuitem id="warehouse_root" name="仓库管理" parent="jinling_warehouse" sequence="1"/>
         <menuitem id="warehouse_report" name="报表" parent="jinling_warehouse" sequence="2"/>
         <menuitem id="warehouse_set" name="设置" parent="jinling_warehouse" sequence="3"/>
@@ -25,8 +25,9 @@
         <menuitem id="jl_warehouse_balance_report_menu" name="库存余额表" action="jl_warehouse_balance_report_action" parent="warehouse_report" sequence="10"/>
 
 
-        <menuitem id="jl_warehouse_mes_plm_menu" name="生产入库单" action="jinling_manufacture.mes_plm_in_action" parent="warehouse_root" sequence="10"/>
-<!--        <menuitem id="jl_warehouse_mes_plm_picking_menu" name="生产领料单" action="jinling_manufacture.mes_plm_picking_action" parent="warehouse_root" sequence="20"/>-->
-        <menuitem id="jl_warehouse_mes_plm_refund_menu" name="生产退料单" action="jinling_manufacture.mes_plm_refund_action" parent="warehouse_root" sequence="30"/>
+        <menuitem id="jl_warehouse_mes_plm_menu" name="生产入库单" action="jinling_manufacture.mes_plm_in_action" parent="warehouse_root" sequence="10" groups="jinling_manufacture.jinling_manufacture_in_groups"/>
+        <menuitem id="jl_warehouse_mes_plm_picking_menu" name="生产领料单" action="jinling_manufacture.mes_plm_picking_action" parent="warehouse_root" sequence="20" groups="jinling_manufacture.jinling_manufacture_picking_groups"/>
+        <menuitem id="jl_warehouse_mes_plm_refund_menu" name="生产退料单" action="jinling_manufacture.mes_plm_refund_action" parent="warehouse_root" sequence="30" groups="jinling_manufacture.jinling_manufacture_return_groups"/>
+        <menuitem id="jl_warehouse_sell_order_out_menu" name="销售发货单" action="jinling_sell.sell_order_out_action" parent="warehouse_root" sequence="40" groups="jinling_sell.jinling_sell_order_out_groups"/>
     </data>
 </odoo>

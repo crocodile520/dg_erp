@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_engineering.charge_category">
+        <field name="name">工程</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_engineering_groups" model="res.groups">
+        <field name="name">工程</field>
+        <field name="category_id" ref="jinling_engineering.charge_category"/>
+    </record>
+
+<!--    <record id="jinling_engineering_order_groups" model="res.groups">-->
+<!--        <field name="name">工程工单</field>-->
+<!--        <field name="category_id" ref="jinling_engineering.charge_category"/>-->
+<!--    </record>-->
+
+    <record id="jinling_engineering_done_groups" model="res.groups">
+        <field name="name">工程工单确认</field>
+        <field name="category_id" ref="jinling_engineering.charge_category"/>
+    </record>
+
+    <record id="jinling_engineering_draft_groups" model="res.groups">
+        <field name="name">工程工单撤销</field>
+        <field name="category_id" ref="jinling_engineering.charge_category"/>
+    </record>
+
+</odoo>

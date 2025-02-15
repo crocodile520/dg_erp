@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_finance.charge_category">
+        <field name="name">财务</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_finance_groups" model="res.groups">
+        <field name="name">财务</field>
+        <field name="category_id" ref="jinling_finance.charge_category"/>
+    </record>
+
+<!--    <record id="jinling_finance_order_groups" model="res.groups">-->
+<!--        <field name="name">对账单</field>-->
+<!--        <field name="category_id" ref="jinling_finance.charge_category"/>-->
+<!--    </record>-->
+
+    <record id="jinling_finance_done_groups" model="res.groups">
+        <field name="name">对账单确认</field>
+        <field name="category_id" ref="jinling_finance.charge_category"/>
+    </record>
+
+    <record id="jinling_finance_draft_groups" model="res.groups">
+        <field name="name">对账单撤销</field>
+        <field name="category_id" ref="jinling_finance.charge_category"/>
+    </record>
+
+</odoo>

@@ -6,6 +6,7 @@
     'version': '16.0',
     'depends': ['mail'],
     'data': [
+        'security/jinling_goods_group.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/goods_view.xml',

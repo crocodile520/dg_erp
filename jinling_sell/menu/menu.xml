@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <menuitem id="sell_menu" name="销售业务"/>
+        <menuitem id="sell_menu" name="销售业务" groups="jinling_sell.jinling_sell_groups"/>
         <menuitem id="sell_order_root" name="销售管理" parent="sell_menu" sequence="1"/>
         <menuitem id="sell_order_data" name="主数据" parent="sell_menu" sequence="2"/>
 
@@ -12,7 +12,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="sell_apply" name="销售申请单" action="sell_apply_action" parent="sell_order_root" sequence="10"/>
+        <menuitem id="sell_apply" name="销售申请单" action="sell_apply_action" parent="sell_order_root" sequence="10" groups="jinling_sell.jinling_sell_apply_groups"/>
 
         <record id="sell_order_action" model="ir.actions.act_window">
             <field name="name">销售订单</field>
@@ -21,7 +21,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="sell_order" name="销售订单" action="sell_order_action" parent="sell_order_root" sequence="20"/>
+        <menuitem id="sell_order" name="销售订单" action="sell_order_action" parent="sell_order_root" sequence="20" groups="jinling_sell.jinling_sell_order_groups"/>
 
         <record id="sell_order_out_action" model="ir.actions.act_window">
             <field name="name">销售发货单</field>
@@ -30,7 +30,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="sell_order_out" name="销售发货单" action="sell_order_out_action" parent="sell_order_root" sequence="30"/>
+        <menuitem id="sell_order_out" name="销售发货单" action="sell_order_out_action" parent="sell_order_root" sequence="30" groups="jinling_sell.jinling_sell_order_out_groups"/>
 
         <record id="sell_order_review_action" model="ir.actions.act_window">
             <field name="name">销售评审单</field>
@@ -39,7 +39,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="sell_order_review" name="销售评审单" action="sell_order_review_action" parent="sell_order_root" sequence="40"/>
+        <menuitem id="sell_order_review" name="销售评审单" action="sell_order_review_action" parent="sell_order_root" sequence="40" groups="jinling_sell.jinling_sell_order_review_groups"/>
 
         <record id="partner_action" model="ir.actions.act_window">
         <field name="name">客户</field>
@@ -51,7 +51,7 @@
         <menuitem id="partner_menu" name="客户" action="partner_action" parent="sell_order_data" sequence="10"/>
         <menuitem id="sell_goods_menu" name="商品" action="jinling_goods.goods_action" parent="sell_order_data" sequence="20"/>
 
-        <menuitem id="sell_reconciliation_menu" name="对账单" action="jinling_finance.jl_reconciliation_action" parent="sell_order_root" sequence="50"/>
+        <menuitem id="sell_reconciliation_menu" name="对账单" action="jinling_finance.jl_reconciliation_action" parent="sell_order_root" sequence="50" groups="jinling_finance.jinling_finance_groups"/>
 
     </data>
 </odoo>

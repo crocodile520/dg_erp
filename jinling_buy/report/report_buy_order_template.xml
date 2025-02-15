@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_buy_order_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <style>
+                        /* 整体样式调整 */
+                        body {
+                        font-size: 12px; /* 减小整体字体大小 */
+                        line-height: 1.2; /* 减小行高 */
+                        }
+                        .page {
+                        margin: 0;
+                        padding: 5px; /* 减小页面内边距 */
+                        }
+                        /* 标题样式 */
+                        h2 {
+                        font-size: 16px;
+                        padding-right: 100px;
+                        right: 100px
+                        <!--                        margin: 5px 0;-->
+                        }
+                        h3 {
+                        font-size: 14px;
+                        margin: 5px 0;
+                        }
+                        h4 {
+                        font-size: 12px;
+                        margin: 5px 0;
+                        }
+                        /* 表格样式 */
+                        .table {
+                        margin-bottom: 5px;
+                        font-size: 11px;
+                        }
+                        .table td, .table th {
+                        padding: 3px; /* 减小单元格内边距 */
+                        }
+                        /* 段落样式 */
+                        p {
+                        margin: 3px 0;
+                        line-height: 1.2;
+                        }
+
+                        /* 修改logo和公司信息的布局样式 */
+                        .company-header {
+                        <!--                        display: flex;-->
+                        <!--                        align-items: flex-start; /* 改为顶部对齐 */-->
+                        <!--                        margin-bottom: 10px;-->
+                        <!--                        position: relative; /* 添加相对定位 */-->
+                        }
+                        .company-logo {
+                        width: 140px; /* 调整logo大小 */
+                        height: 60px;
+                        <!--                        margin-right: 20px;-->
+                        flex-shrink: 0; /* 防止logo被压缩 */
+                        }
+                        .company-info {
+                        flex: 1;
+                        padding-left: 20px; /* 添加左侧间距 */
+                        }
+                        .company-info h2 {
+                        margin: 0; /* 移除标题边距 */
+                        margin-right: 100px;
+                        padding: 0;
+                        font-size: 30px;
+                        }
+                        .company-info p {
+                        margin: 5px 0; /* 调整段落边距 */
+                        margin-right: 100px;
+                        font-size: 18px;
+                        }
+
+                        /* 调整订购合同标题的位置 */
+                        h3 {
+                        text-align: center; /* 居中对齐 */
+                        margin: 15px 0; /* 增加上下边距 */
+                        font-size: 30px;
+                        }
+
+                        .img p {
+                        color: read;
+                        top: 20px;
+
+                        }
+
+                    </style>
+                    <div class="page">
+                        <div class="company-header">
+                            <div class="img">
+                                <img class="company-logo" t-att-src="'/jinling_buy/static/description/logo.png'"
+                                     alt="公司logo"/>
+                            </div>
+                            <div class="company-info">
+                                <h2 style="margin-left:125px;margin-top:-50px">东莞市新训电子科技有限公司</h2>
+                                <p style="margin-left:125px;">东莞市清溪镇谢坑村委会金剑工业园C栋2楼</p>
+                            </div>
+                        </div>
+                        <h3>订购合同</h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>需方（全称）：</th>
+                                <td>
+                                    <span t-esc="'东莞市新训电子科技有限公司'"/>
+                                </td>
+                                <th>供方（全称）：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>地址：</th>
+                                <td>
+                                    <span t-esc="'东莞市清溪镇谢坑村龙江一路12号金剑工业园C栋二楼'"/>
+                                </td>
+                                <th>地址：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>电话：</th>
+                                <td>
+                                    <span t-esc="'13509828289'"/>
+                                </td>
+                                <th>电话：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.main_contact"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>联系人：</th>
+                                <td>
+                                    <span t-esc="'唐丽君'"/>
+                                </td>
+                                <th>联系人：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.main_mobile"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>开户银行：</th>
+                                <td>
+                                    <span t-esc="'中国工商银行东莞市清溪支行'"/>
+                                </td>
+                                <th>开户银行：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.bank_address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>银行帐号：</th>
+                                <td>
+                                    <span t-esc="'2010028909200385246'"/>
+                                </td>
+                                <th>银行帐号：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.account"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>纳税人识别号：</th>
+                                <td>
+                                    <span t-esc="'91441900MA51E6HB8T'"/>
+                                </td>
+                                <th>纳税人识别号：</th>
+                                <td>
+                                    <span t-field="doc.supplier_id.duty_number"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            根据《中华人民共和国合同法》以及其他相关法律规定，双方在自愿、平等、公平、诚信的基础上经协商一致，签订本合同，信守执行：
+                        </p>
+                        <h4>一、订购产品如下：</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>物料名称</th>
+                                    <th>品名</th>
+                                    <th>单位</th>
+                                    <th>订单数量</th>
+                                    <th>含税单价</th>
+                                    <th>含税金额</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <tr>
+                                        <td style="text-align: center;" >
+                                            <span t-esc="line_index + 1"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span  t-field="line.goods_id.name"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span  t-field="line.goods_id.describe"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span t-field="line.goods_id.uom_id.name"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span t-field="line.qty"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span t-field="line.tax_price"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span t-field="line.subtotal"/>
+                                        </td>
+                                        <td style="text-align: center;" >
+                                            <span t-field="line.note"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; font-weight: bold;">合计：</td>
+                                    <td style="text-align: center;">
+                                        <span t-esc="sum(doc.line_ids.mapped('qty'))"
+                                              t-options='{"widget": "float", "precision": 2}'/>
+                                    </td>
+                                    <td></td>
+                                    <td style="text-align: center;">
+                                        <span t-esc="sum(doc.line_ids.mapped('subtotal'))"
+                                              t-options='{"widget": "float", "precision": 2}'/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>二、订购条款：</h4>
+                        <p>
+                            （一）供方见单后必须回传，并按期交货，如不能按期交货须提前通知需方，否则造成的损失部分由供方负责；
+                        </p>
+                        <p>（二）交货地点：需方仓库，交货方式所发生费用由供方承担；</p>
+                        <p>（三）结款方式：转账付款；</p>
+                        <p>（四）验收方式：按照需方提供的技术参数标准验收；</p>
+                        <p>（五）不合格品应由供方取回，若因产品质量给需方造成损失，供方应按实际损失给予需方赔偿；</p>
+                        <p>
+                            （六）违约责任，解决方式：双方产生纠纷应协商解决，协商不成则按《中华人民共和国合同法》的相关规定执行。
+                        </p>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <p>供方盖章：___________</p>
+                                <p>供方负责人：___________</p>
+                                <p>签订日期：___________
+                                    <!--                                    <span t-field=""/>-->
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p>需方盖章：___________</p>
+                                <p>需方负责人审核：___________</p>
+                                <p>签订日期：___________
+                                    <!--                                    <span t-field=""/>-->
+                                </p>
+                            </div>
+                        </div>
+                        <p>说明：此订购合同单在定货方没有付清全部货款，最终解释权归东莞市新训电子科技有限公司所属。</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_programme.charge_category">
+        <field name="name">生产计划</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_programme_groups" model="res.groups">
+        <field name="name">生产计划</field>
+        <field name="category_id" ref="jinling_programme.charge_category"/>
+    </record>
+
+<!--    <record id="jinling_programme_groups" model="res.groups">-->
+<!--        <field name="name">生产计划单</field>-->
+<!--        <field name="category_id" ref="jinling_programme.charge_category"/>-->
+<!--    </record>-->
+
+    <record id="jinling_programme_key_groups" model="res.groups">
+        <field name="name">生产计划单锁定</field>
+        <field name="category_id" ref="jinling_programme.charge_category"/>
+    </record>
+
+    <record id="jinling_programme_unlock_key_groups" model="res.groups">
+        <field name="name">生产计划单解锁</field>
+        <field name="category_id" ref="jinling_programme.charge_category"/>
+    </record>
+
+</odoo>

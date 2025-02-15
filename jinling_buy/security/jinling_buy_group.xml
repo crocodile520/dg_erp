@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_buy.charge_category">
+        <field name="name">采购</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_buy_groups" model="res.groups">
+        <field name="name">采购</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_apply_groups" model="res.groups">
+        <field name="name">采购申请单</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_order_groups" model="res.groups">
+        <field name="name">采购订单</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_apply_payment_groups" model="res.groups">
+        <field name="name">采购付款申请单</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehousing_groups" model="res.groups">
+        <field name="name">采购入库单</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_return_groups" model="res.groups">
+        <field name="name">采购退货单</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_apply_done_groups" model="res.groups">
+        <field name="name">采购申请单确认</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_apply_draft_groups" model="res.groups">
+        <field name="name">采购申请单撤销</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_order_done_groups" model="res.groups">
+        <field name="name">采购订单确认</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_order_draft_groups" model="res.groups">
+        <field name="name">采购订单撤销</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_payment_done_groups" model="res.groups">
+        <field name="name">采购付款申请单确认</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_payment_draft_groups" model="res.groups">
+        <field name="name">采购付款申请单撤销</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehouse_done_groups" model="res.groups">
+        <field name="name">采购入库单确认</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehouse_draft_groups" model="res.groups">
+        <field name="name">采购入库单撤销</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehouse_rejection_groups" model="res.groups">
+        <field name="name">采购入库拒收</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehouse_payment_groups" model="res.groups">
+        <field name="name">采购入库付款申请</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_warehouse_return_groups" model="res.groups">
+        <field name="name">采购入库退货</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+</odoo>

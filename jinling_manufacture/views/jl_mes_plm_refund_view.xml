@@ -21,8 +21,8 @@
             <field name="arch" type="xml">
                 <form string="生产退料" class="o_sale_order" duplicate="1" delete="0">
                     <header>
-                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
-                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
+                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_return_done_groups"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_return_draft_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,start,done,stop" readonly="1"/>
                     </header>
@@ -50,11 +50,6 @@
                                         <field name="ms1_qty" sum="数量合计" readonly="1"/>
                                         <field name="ms2_qty" sum="数量合计" readonly="1"/>
                                         <field name="ms3_qty" sum="数量合计" readonly="1"/>
-                                        <field name="ms4_qty" sum="数量合计" readonly="1"/>
-                                        <field name="gms1_qty" sum="数量合计" readonly="1"/>
-                                        <field name="gms2_qty" sum="数量合计" readonly="1"/>
-                                        <field name="gms3_qty" sum="数量合计" readonly="1"/>
-                                        <field name="gms4_qty" sum="数量合计" readonly="1"/>
                                         <field name="note" optional="show"/>
 <!--                                        <field name="state" invisible='1'/>-->
                                     </tree>

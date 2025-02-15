@@ -12,13 +12,8 @@ class JlWarehouseBalanceReport(models.Model):
     surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
     uom_id = fields.Many2one('uom', related='goods_id.uom_id', ondelete='cascade')
     ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    ms2_qty = fields.Float('半成品仓库存数量', digits='Quantity', track_visibility='always', default=0)
+    ms2_qty = fields.Float('PCB板仓数量', digits='Quantity', track_visibility='always', default=0)
     ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    ms4_qty = fields.Float('废品仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    gms1_qty = fields.Float('国外成品仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    gms2_qty = fields.Float('国外半成品仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    gms3_qty = fields.Float('国外原材料仓库存数量', digits='Quantity', track_visibility='always', default=0)
-    gms4_qty = fields.Float('国外废品仓库存数量', digits='Quantity', track_visibility='always', default=0)
 
     def init(self):
         cr = self._cr
@@ -26,8 +21,7 @@ class JlWarehouseBalanceReport(models.Model):
         cr.execute('''
                     CREATE OR REPLACE VIEW jl_warehouse_balance_report as(
                     select row_number() over(order by g.id) id,g.id as goods_id,sum(coalesce(ms1_qty,0)) as ms1_qty,sum(coalesce(ms2_qty,0)) as ms2_qty,
-                        sum(coalesce(ms3_qty,0)) as ms3_qty,sum(coalesce(ms4_qty,0)) as ms4_qty,sum(coalesce(gms1_qty,0)) as gms1_qty,
-                        sum(coalesce(gms2_qty,0)) as gms2_qty,sum(coalesce(gms3_qty,0)) as gms3_qty,sum(coalesce(gms4_qty,0)) as gms4_qty 
+                        sum(coalesce(ms3_qty,0)) as ms3_qty
                         from goods g
                         left join (
                         select b.goods_id,
@@ -36,17 +30,7 @@ class JlWarehouseBalanceReport(models.Model):
                         (case when b.warehouse_id is null then 0
                         when b.warehouse_id = 2 then coalesce(b.balance,0) end) as ms2_qty,
                         (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 3 then coalesce(b.balance,0) end) as ms3_qty,
-                        (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 4 then coalesce(b.balance,0) end) as ms4_qty,
-                        (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 5 then coalesce(b.balance,0) end) as gms1_qty,
-                        (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 6 then coalesce(b.balance,0) end) as gms2_qty,
-                        (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 7 then coalesce(b.balance,0) end) as gms3_qty,
-                        (case when b.warehouse_id is null then 0
-                        when b.warehouse_id = 8 then coalesce(b.balance,0) end) as gms4_qty
+                        when b.warehouse_id = 3 then coalesce(b.balance,0) end) as ms3_qty
                         from (
                         select a.goods_id,a.warehouse_id,coalesce(sum(a.in_qty) - sum(a.out_qty),0) balance 
                         from (

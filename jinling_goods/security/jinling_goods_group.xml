@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_goods.charge_category">
+        <field name="name">产品</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_goods_groups" model="res.groups">
+        <field name="name">产品</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
+    <record id="jinling_goods_bom_groups" model="res.groups">
+        <field name="name">产品bom</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
+    <record id="jinling_goods_bom_done_groups" model="res.groups">
+        <field name="name">产品bom单确认</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
+    <record id="=jinling_goods_bom_draft_groups" model="res.groups">
+        <field name="name">产品bom单撤销</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+</odoo>

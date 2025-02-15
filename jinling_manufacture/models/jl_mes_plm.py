@@ -63,7 +63,9 @@ class LxMesPlm(models.Model):
             raise UserError('完工数量不可以等于小于0')
         self.create_quality()
         self.write({
-            'state':'done'
+            'state': 'done',
+            'approve_uid': self.env.uid,
+            'approve_date': fields.Datetime.now(self),
         })
 
 
@@ -81,12 +83,12 @@ class LxMesPlm(models.Model):
                     raise UserError('不可以删除已经确定的质量检验单')
                 else:
                     quality_id.unlink()
-        # if any(pick_ids):
-        #     for pick_id in pick_ids:
-        #         if pick_id.state != 'draft':
-        #             raise UserError('不可以删除已经确定的领料单')
-        #         else:
-        #             pick_id.unlink()
+        if any(pick_ids):
+            for pick_id in pick_ids:
+                if pick_id.state != 'draft':
+                    raise UserError('不可以删除已经确定的领料单')
+                else:
+                    pick_id.unlink()
         if any(ref_ids):
             for ref_id in ref_ids:
                 if ref_id.state != 'draft':
@@ -139,29 +141,29 @@ class LxMesPlm(models.Model):
         return action
 
 
-    # def action_picking_view(self):
-    #     self.ensure_one()
-    #     action = {
-    #         'name': '生产领料单',
-    #         'type': 'ir.actions.act_window',
-    #         'view_mode': 'form',
-    #         'res_model': 'jl.mes.plm.picking',
-    #         'view_id': False,
-    #         'target': 'current',
-    #     }
-    #
-    #     form_view = self.env.ref('jinling_manufacture.jl_mes_plm_picking_view_form').id
-    #     tree_view = self.env.ref('jinling_manufacture.jl_mes_plm_picking_view_tree').id
-    #
-    #     if self.picking_count > 1:
-    #         action['domain'] = "[('plm_id','=',%s)]" % self.id
-    #         action['view_mode'] = 'tree,form'
-    #         action['views'] = [(tree_view, 'tree'),(form_view, 'form')]
-    #     elif self.picking_count == 1:
-    #         picking_id = self.env['jl.mes.plm.picking'].search([('plm_id', '=', self.id)])
-    #         action['views'] = [(form_view, 'form')]
-    #         action['res_id'] = picking_id and picking_id.id or False
-    #     return action
+    def action_picking_view(self):
+        self.ensure_one()
+        action = {
+            'name': '生产领料单',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'jl.mes.plm.picking',
+            'view_id': False,
+            'target': 'current',
+        }
+
+        form_view = self.env.ref('jinling_manufacture.jl_mes_plm_picking_view_form').id
+        tree_view = self.env.ref('jinling_manufacture.jl_mes_plm_picking_view_tree').id
+
+        if self.picking_count > 1:
+            action['domain'] = "[('plm_id','=',%s)]" % self.id
+            action['view_mode'] = 'tree,form'
+            action['views'] = [(tree_view, 'tree'),(form_view, 'form')]
+        elif self.picking_count == 1:
+            picking_id = self.env['jl.mes.plm.picking'].search([('plm_id', '=', self.id)])
+            action['views'] = [(form_view, 'form')]
+            action['res_id'] = picking_id and picking_id.id or False
+        return action
 
     def action_refund_view(self):
         self.ensure_one()
@@ -201,18 +203,52 @@ class LxMesPlm(models.Model):
             }) for line in self.line_ids]
         })
 
+    def button_mes_plm_picking(self):
+        '''创建领料单'''
+
+        pick_id = self.env['jl.mes.plm.picking'].create({
+            'plm_id':self.id
+        })
+        pick_id.write({
+            'line_ids':[(0,0,{
+                'plm_line_id':line.id,
+                'goods_id':line.goods_id.id,
+                'qty':line.qty
+            }) for line in self.line_ids]
+        })
+
     def _compute_quality_count(selfs):
         for self in selfs:
             self.quality_count = self.env['jl.quality'].search_count([('plm_id','=',self.id)])
 
-    # def _compute_picking_count(selfs):
-    #     for self in selfs:
-    #         self.picking_count = self.env['jl.mes.plm.picking'].search_count([('plm_id','=',self.id)])
+    def _compute_picking_count(selfs):
+        for self in selfs:
+            self.picking_count = self.env['jl.mes.plm.picking'].search_count([('plm_id','=',self.id)])
 
     def _compute_refund_count(selfs):
         for self in selfs:
             self.refund_count = self.env['jl.mes.plm.refund'].search_count([('plm_id','=',self.id)])
 
+    @api.onchange('goods_id', 'qty')
+    def onchange_line_id(self):
+        """
+        当商品或数量变化时，更新生产工单明细行
+        """
+        if not self.goods_id:
+            return
+        bom_id = self.env['goods.bom'].search([('goods_id', '=', self.goods_id.id)], limit=1)
+        if not bom_id:
+            return
+        self.line_ids = False
+
+        # 创建新的明细行
+        lines = []
+        for bom_line in bom_id.line_ids:
+            lines.append((0, 0, {
+                'goods_id': bom_line.goods_id.id,
+                'qty': bom_line.qty * (self.qty or 0)
+            }))
+        self.line_ids = lines
 
     name = fields.Char('单据编号', index=True, copy=False, default=lambda self:self.env['ir.sequence'].next_by_code('jl.mes.plm'),
                        help="创建时它会自动生成下一个编号")
@@ -244,7 +280,7 @@ class LxMesPlm(models.Model):
                                   help='确认单据的人')
     approve_date = fields.Datetime('确认日期', copy=False)
     quality_count = fields.Integer('质量检验单数量', compute='_compute_quality_count')
-    # picking_count = fields.Integer('生产领料单数量', compute='_compute_picking_count')
+    picking_count = fields.Integer('生产领料单数量', compute='_compute_picking_count')
     refund_count = fields.Integer('生产退料单数量', compute='_compute_refund_count')
     note = fields.Char('备注')
 

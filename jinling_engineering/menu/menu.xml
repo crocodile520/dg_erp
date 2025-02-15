@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!--根菜单-->
-        <menuitem id="jinling_enginerring_menu" name="工程业务"/>
+        <menuitem id="jinling_enginerring_menu" name="工程业务" groups="jinling_engineering.jinling_engineering_groups"/>
         <menuitem id="jinling_enginerring_root_menu" name="工程管理" parent="jinling_enginerring_menu" sequence="1"/>
         <menuitem id="jinling_enginerring_setting_menu" name="设置" parent="jinling_enginerring_menu" sequence="2"/>
 
@@ -13,7 +13,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="jl_engineering_menu" name="工程工单" action="jl_engineering_action" parent="jinling_engineering.jinling_enginerring_root_menu" sequence="10"/>
+        <menuitem id="jl_engineering_menu" name="工程工单" action="jl_engineering_action" parent="jinling_engineering.jinling_enginerring_root_menu" sequence="10" groups="jinling_engineering.jinling_engineering_groups"/>
 
         <record id="jl_tool_action" model="ir.actions.act_window">
             <field name="name">工具</field>

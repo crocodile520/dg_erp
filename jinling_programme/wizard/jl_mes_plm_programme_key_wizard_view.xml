@@ -35,6 +35,7 @@
 			binding_model="jl.mes.plm.programme"
 			view_mode="form"
 			target="new"
+			groups="jinling_programme.jinling_programme_key_groups"
 			/>
 		<act_window id="jl_mes_plm_programme_unlock_key_ation"
 			name='批量解锁'
@@ -42,6 +43,7 @@
 			binding_model="jl.mes.plm.programme"
 			view_mode="form"
 			target="new"
+			groups="jinling_programme.jinling_programme_unlock_key_groups"
 			/>
 	</data>
 </openerp>

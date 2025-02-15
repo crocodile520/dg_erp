@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_warehouse.charge_category">
+        <field name="name">仓库</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_warehouse_groups" model="res.groups">
+        <field name="name">仓库</field>
+        <field name="category_id" ref="jinling_warehouse.charge_category"/>
+    </record>
+
+</odoo>

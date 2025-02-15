@@ -173,6 +173,71 @@ class SellOrderOut(models.Model):
         for self in selfs:
             self.rec_count = self.env['jl.reconciliation'].search_count([('out_id','=',self.id)])
 
+    @api.depends('line_ids.amount')
+    def _compute_total_amount(self):
+        amount_total = 0
+        self.amount_total = 0
+        for line in self.line_ids:
+            amount_total += line.amount
+        self.amount_total = amount_total
+
+    def rmb_upper(self, value):
+        """
+        人民币大写
+        :param value: 数字金额
+        :return: 中文大写金额
+        """
+        map = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"]
+        unit = ["元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿"]
+
+        # 处理小数，将数字分割成整数和小数部分
+        str_value = "%.2f" % value
+        int_value, decimal_value = str_value.split('.')
+
+        # 处理整数部分
+        int_str = ''
+        int_len = len(int_value)
+        for i, n in enumerate(int_value):
+            n = int(n)
+            if n != 0:
+                int_str += map[n] + unit[int_len - i - 1]
+            else:
+                if int_str and not int_str.endswith('零'):
+                    int_str += '零'
+
+        # 处理小数部分
+        decimal_str = ''
+        if decimal_value:
+            jiao = int(decimal_value[0])
+            fen = int(decimal_value[1])
+            if jiao:
+                decimal_str += map[jiao] + '角'
+            if fen:
+                decimal_str += map[fen] + '分'
+
+        # 组合结果
+        if not int_str:
+            int_str = '零元'
+        if not decimal_str:
+            if int_str == '零元':
+                return '零元整'
+            return int_str + '整'
+        return int_str + decimal_str
+
+    @api.depends('amount_total')
+    def _compute_amount_total_words(self):
+        """
+        计算金额大写
+        """
+        for record in self:
+            if record.amount_total:
+                try:
+                    record.amount_total_words = self.rmb_upper(record.amount_total)
+                except Exception:
+                    record.amount_total_words = '零元整'
+            else:
+                record.amount_total_words = '零元整'
+
     name = fields.Char('单据编号',
                        index=True,
                        copy=False,
@@ -196,11 +261,14 @@ class SellOrderOut(models.Model):
     main_contact = fields.Char('联系人电话', related='partner_id.main_contact')
     address = fields.Char('送货地址', related='partner_id.address')
     date = fields.Date('单据日期', default=lambda self: fields.Date.context_today(self), required=True)
+    delivery_date = fields.Date('交货日期',default=lambda self: fields.Date.context_today(self), required=True)
     line_ids = fields.One2many('sell.order.out.line', 'out_id', ondelete='cascade',
                                help='销售发货单明细行')
     note = fields.Char('备注')
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
     rec_count = fields.Integer('对账单数量',compute='_compute_rec_count')
+    amount_total = fields.Float('总金额', digits='Amount', compute='_compute_total_amount')
+    amount_total_words = fields.Char('大写金额',compute='_compute_amount_total_words')
 
 
 class SellOrderOutLine(models.Model):
@@ -236,6 +304,8 @@ class SellOrderOutLine(models.Model):
             self.tax_amount = self.qty * self.tax_price * self.tax_rate / 100
             self.subtotal = (self.price * self.qty) + self.tax_amount
 
+
+
     line_id = fields.Many2one('sell.order.line',
                               '销售订单明细行',
                               states=READONLY_STATES,
@@ -248,7 +318,7 @@ class SellOrderOutLine(models.Model):
     specs = fields.Char('规格型号', related='goods_id.specs', ondelete='cascade')
     surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
     warehouse_id = fields.Many2one('warehouse', '仓库', help='关联仓库，购票物品存储某个仓库')
-    delivery_date = fields.Date('交货日期', required=True)
+    delivery_date = fields.Date('交货日期',related='out_id.delivery_date', required=True)
     uom_id = fields.Many2one('uom', related='goods_id.uom_id', ondelete='cascade')
     price = fields.Float('单价', digits='Price', default=0)
     tax_price = fields.Float('含税单价', digits='Price', compute='_compute_all_amount')

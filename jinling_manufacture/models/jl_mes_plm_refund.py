@@ -129,8 +129,7 @@ class JlMesPlmRefundLine(models.Model):
 
             for line in cr.dictfetchall():
                 balance_qty.update({
-                    line['goods_id']:{'ms1_qty':line['ms1_qty'],'ms2_qty':line['ms2_qty'],'ms3_qty':line['ms3_qty'],'ms4_qty':line['ms4_qty'],
-                                      'gms1_qty':line['gms1_qty'],'gms2_qty':line['gms2_qty'],'gms3_qty':line['gms3_qty'],'gms4_qty':line['gms4_qty']}
+                    line['goods_id']:{'ms1_qty':line['ms1_qty'],'ms2_qty':line['ms2_qty'],'ms3_qty':line['ms3_qty']}
                 })
         for self in selfs:
             key = self.goods_id.id
@@ -138,11 +137,6 @@ class JlMesPlmRefundLine(models.Model):
             self.ms1_qty = qty_dict['ms1_qty']
             self.ms2_qty = qty_dict['ms2_qty']
             self.ms3_qty = qty_dict['ms3_qty']
-            self.ms4_qty = qty_dict['ms4_qty']
-            self.gms1_qty = qty_dict['gms1_qty']
-            self.gms2_qty = qty_dict['gms2_qty']
-            self.gms3_qty = qty_dict['gms3_qty']
-            self.gms4_qty = qty_dict['gms4_qty']
 
 
     pick_id = fields.Many2one('jl.mes.plm.refund', '生产领料单', ondelete='cascade')
@@ -155,13 +149,8 @@ class JlMesPlmRefundLine(models.Model):
     surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
     qty = fields.Float('数量', digits='Quantity')
     ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    ms2_qty = fields.Float('半成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
+    ms2_qty = fields.Float('PCB板仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
     ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    ms4_qty = fields.Float('废品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    gms1_qty = fields.Float('国外成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    gms2_qty = fields.Float('国外半成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    gms3_qty = fields.Float('国外原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-    gms4_qty = fields.Float('国外废品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
     note = fields.Char('备注')
     # state = fields.Selection(STATE, '确认状态', related='pick_id.state')
 

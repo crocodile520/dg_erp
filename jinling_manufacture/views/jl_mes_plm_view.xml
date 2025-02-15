@@ -7,10 +7,10 @@
             <field name="arch" type="xml">
                 <tree string="生产工单" delete="0">
                     <field name="name" optional="show"/>
-                    <field name="order_id" optional="show"/>
-                    <field name="partner_id" optional="show"/>
-                    <field name="partner_code" optional="show"/>
-                     <field name="ref" optional="show"/>
+<!--                    <field name="order_id" optional="show"/>-->
+<!--                    <field name="partner_id" optional="show"/>-->
+<!--                    <field name="partner_code" optional="show"/>-->
+<!--                     <field name="ref" optional="show"/>-->
                     <field name="user_id" optional="show"/>
                     <field name="goods_id" optional="show"/>
                     <field name="describe" optional="show"/>
@@ -30,12 +30,13 @@
             <field name="arch" type="xml">
                 <form string="材料" class="o_sale_order" duplicate="1" delete="0">
                     <header>
-                        <button name='button_done' states='start' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
-                        <button name='button_start' states='draft' string='开工' type='object' class='oe_highlight' icon="fa-check"/>
-                        <button name='button_stop' states='start' string='暂停' type='object' class='btn-warning' icon="fa-check"/>
-                        <button name='button_continue' states='stop' string='继续' type='object' class='oe_highlight' icon="fa-check"/>
-                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
-                        <button name="button_mes_plm_refund" states="done" string="退料" type="object" icon="fa-reply"/>
+                        <button name='button_done' states='start' string='确认' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_done_groups"/>
+                        <button name='button_start' states='draft' string='开工' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_start_groups"/>
+                        <button name='button_stop' states='start' string='暂停' type='object' class='btn-warning' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_stop_groups"/>
+                        <button name='button_continue' states='stop' string='继续' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_continue_groups"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_draft_groups"/>
+                        <button name="button_mes_plm_refund" states="done" string="退料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
+                        <button name="button_mes_plm_picking" states="start" string="领料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,start,done,stop" readonly="1"/>
                     </header>
@@ -47,12 +48,12 @@
                                 icon="fa-quora" attrs="{'invisible':['|', ('state', 'in', ('draft')), ('quality_count', '=', 0)]}">
                                 <field name="quality_count" widget="statinfo" string="质量检验单"/>
                             </button>
-<!--                            <button type="object"-->
-<!--                                name="action_picking_view"-->
-<!--                                class="oe_stat_button"-->
-<!--                                icon="fa-check-square-o" attrs="{'invisible':['|', ('state', 'in', ('draft')), ('picking_count', '=', 0)]}">-->
-<!--                                <field name="picking_count" widget="statinfo" string="领料单"/>-->
-<!--                            </button>-->
+                            <button type="object"
+                                name="action_picking_view"
+                                class="oe_stat_button"
+                                icon="fa-check-square-o" attrs="{'invisible':['|', ('state', 'in', ('draft')), ('picking_count', '=', 0)]}">
+                                <field name="picking_count" widget="statinfo" string="领料单"/>
+                            </button>
                             <button type="object"
                                 name="action_refund_view"
                                 class="oe_stat_button"
@@ -63,10 +64,10 @@
                         <group>
                             <group>
                                 <field name="name" readonly="1"/>
-                                <field name="order_id" optional="show" readonly='1'/>
-                                <field name="partner_id" optional="show" readonly="1"/>
-                                <field name="partner_code" optional="show" readonly="1"/>
-                                <field name="ref" optional="show" readonly="1"/>
+<!--                                <field name="order_id" optional="show" readonly='1'/>-->
+<!--                                <field name="partner_id" optional="show" readonly="1"/>-->
+<!--                                <field name="partner_code" optional="show" readonly="1"/>-->
+<!--                                <field name="ref" optional="show" readonly="1"/>-->
                                 <field name="user_id" optional="show" readonly="1"/>
                                 <field name="date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="delivery_date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
@@ -79,7 +80,7 @@
                                 <field name="specs" readonly="1"/>
                                 <field name="surface" readonly="1"/>
                                 <field name="uom_id" optional="show" readonly="1"/>
-                                <field name="qty" optional="show" readonly="1"/>
+                                <field name="qty" optional="show" attrs="{'readonly': [('state', 'in',  ('start','done','cancel'))]}"/>
                                 <field name="done_qty" optional="show" attrs="{'readonly': [('state', 'in',  ('done','cancel'))]}"/>
                                 <field name="buy_qty" optional="show" readonly="1"/>
                             </group>

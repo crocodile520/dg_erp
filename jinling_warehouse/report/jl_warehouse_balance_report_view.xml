@@ -14,11 +14,6 @@
                 	<field name="ms1_qty" sum="数量合计" />
                 	<field name="ms2_qty" sum="数量合计" />
                 	<field name="ms3_qty" sum="数量合计" />
-                	<field name="ms4_qty" sum="数量合计" />
-                	<field name="gms1_qty" sum="数量合计" />
-                	<field name="gms2_qty" sum="数量合计" />
-                	<field name="gms3_qty" sum="数量合计" />
-                	<field name="gms4_qty" sum="数量合计" />
                 </tree>
             </field>
         </record>

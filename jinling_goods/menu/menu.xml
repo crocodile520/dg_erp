@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <menuitem id="jl_goods_menu" name="产品设计"/>
+        <menuitem id="jl_goods_menu" name="产品设计" groups="jinling_goods.jinling_goods_groups"/>
         <menuitem id="goods_root_menu" name="产品管理" parent="jl_goods_menu" sequence="1"/>
         <menuitem id="goods_setting_menu" name="设置" parent="jl_goods_menu" sequence="2"/>
 
@@ -35,6 +35,6 @@
             <field name="res_model">goods.bom</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="goods_bom_menu" name="产品BOM" action="goods_bom_action" parent="jinling_goods.goods_root_menu" sequence="1"/>
+        <menuitem id="goods_bom_menu" name="产品BOM" action="goods_bom_action" parent="jinling_goods.goods_root_menu" sequence="1" groups="jinling_goods.jinling_goods_bom_groups"/>
     </data>
 </odoo>

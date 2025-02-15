@@ -1,5 +1,5 @@
-from odoo.odoo import api,models,fields
-from odoo.odoo.exceptions import UserError
+from odoo import api,models,fields
+from odoo.exceptions import UserError
 
 
 READONLY_STATES = {
@@ -28,28 +28,13 @@ class JlMesPlmPicking(models.Model):
                 raise UserError('%s商品 仓库不允许为空' % line.goods_id.name)
             if line.warehouse_id.id == 1:
                 if line.qty > line.ms1_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
+                    raise UserError('%s商品%s领料库存数量不足' % (line.goods_id.name,line.warehouse_id.name))
             elif line.warehouse_id.id == 2:
                 if line.qty > line.ms2_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
+                    raise UserError('%s商品%s领料库存数量不足' % (line.goods_id.name, line.warehouse_id.name))
             elif line.warehouse_id.id == 3:
                 if line.qty > line.ms3_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 4:
-                if line.qty > line.ms4_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 5:
-                if line.qty > line.gms1_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 6:
-                if line.qty > line.gms2_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 7:
-                if line.qty > line.gms3_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 8:
-                if line.qty > line.gms4_qty:
-                    raise UserError('%s商品领料库存数量不足' % line.goods_id.name)
+                    raise UserError('%s商品%s领料库存数量不足' % (line.goods_id.name, line.warehouse_id.name))
         for record in self.line_ids:
             if float(record.qty) + float(record.plm_line_id.done_qty) >  float(record.plm_line_id.neck_qty):
                 raise UserError('领料数量超过了待领数量')
@@ -137,57 +122,46 @@ class JlMesPlmPicking(models.Model):
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
 
 
-# class JlMesPlmPickingLine(models.Model):
-#     _name = 'jl.mes.plm.picking.line'
-#     _description = '生产领料单明细行'
-#
-#
-#     @api.depends('goods_id')
-#     def _compute_warehouse_balance(selfs):
-#         cr = selfs._cr
-#         goods_ids = selfs.goods_id.ids
-#         balance_qty = {}
-#         if any(goods_ids):
-#             cr.execute("""
-#                         select * from jl_warehouse_balance_report
-#                         where goods_id in ({goods_id})
-#                         """.format(**{'goods_id': ','.join([str(id) for id in goods_ids])}))
-#
-#             for line in cr.dictfetchall():
-#                 balance_qty.update({
-#                     line['goods_id']:{'ms1_qty':line['ms1_qty'],'ms2_qty':line['ms2_qty'],'ms3_qty':line['ms3_qty'],'ms4_qty':line['ms4_qty'],
-#                                       'gms1_qty':line['gms1_qty'],'gms2_qty':line['gms2_qty'],'gms3_qty':line['gms3_qty'],'gms4_qty':line['gms4_qty']}
-#                 })
-#         for self in selfs:
-#             key = self.goods_id.id
-#             qty_dict = balance_qty[key] if key in balance_qty.keys() else 0
-#             self.ms1_qty = qty_dict['ms1_qty']
-#             self.ms2_qty = qty_dict['ms2_qty']
-#             self.ms3_qty = qty_dict['ms3_qty']
-#             self.ms4_qty = qty_dict['ms4_qty']
-#             self.gms1_qty = qty_dict['gms1_qty']
-#             self.gms2_qty = qty_dict['gms2_qty']
-#             self.gms3_qty = qty_dict['gms3_qty']
-#             self.gms4_qty = qty_dict['gms4_qty']
-#
-#
-#     pick_id = fields.Many2one('jl.mes.plm.picking', '生产领料单', ondelete='cascade')
-#     plm_line_id = fields.Many2one('jl.mes.plm.line', '生产工单明细', ondelete='cascade')
-#     warehouse_id = fields.Many2one('warehouse', '仓库', help='关联仓库，购票物品存储某个仓库')
-#     goods_id = fields.Many2one('goods', '产品名称', ondelete='cascade')
-#     describe = fields.Char('产品名称', related='goods_id.describe', ondelete='cascade')
-#     specs = fields.Char('规格型号', related='goods_id.specs', ondelete='cascade')
-#     uom_id = fields.Many2one('uom', related='goods_id.uom_id', ondelete='cascade')
-#     surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
-#     qty = fields.Float('数量', digits='Quantity')
-#     ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     ms2_qty = fields.Float('半成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     ms4_qty = fields.Float('废品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     gms1_qty = fields.Float('国外成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     gms2_qty = fields.Float('国外半成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     gms3_qty = fields.Float('国外原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     gms4_qty = fields.Float('国外废品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
-#     note = fields.Char('备注')
-#     state = fields.Selection(STATE, '确认状态', related='pick_id.state')
+class JlMesPlmPickingLine(models.Model):
+    _name = 'jl.mes.plm.picking.line'
+    _description = '生产领料单明细行'
+
+
+    @api.depends('goods_id')
+    def _compute_warehouse_balance(selfs):
+        cr = selfs._cr
+        goods_ids = selfs.goods_id.ids
+        balance_qty = {}
+        if any(goods_ids):
+            cr.execute("""
+                        select * from jl_warehouse_balance_report
+                        where goods_id in ({goods_id})
+                        """.format(**{'goods_id': ','.join([str(id) for id in goods_ids])}))
+
+            for line in cr.dictfetchall():
+                balance_qty.update({
+                    line['goods_id']:{'ms1_qty':line['ms1_qty'],'ms2_qty':line['ms2_qty'],'ms3_qty':line['ms3_qty']}
+                })
+        for self in selfs:
+            key = self.goods_id.id
+            qty_dict = balance_qty[key] if key in balance_qty.keys() else 0
+            self.ms1_qty = qty_dict['ms1_qty']
+            self.ms2_qty = qty_dict['ms2_qty']
+            self.ms3_qty = qty_dict['ms3_qty']
+
+
+    pick_id = fields.Many2one('jl.mes.plm.picking', '生产领料单', ondelete='cascade')
+    plm_line_id = fields.Many2one('jl.mes.plm.line', '生产工单明细', ondelete='cascade')
+    warehouse_id = fields.Many2one('warehouse', '仓库', help='关联仓库，购票物品存储某个仓库')
+    goods_id = fields.Many2one('goods', '产品名称', ondelete='cascade')
+    describe = fields.Char('产品名称', related='goods_id.describe', ondelete='cascade')
+    specs = fields.Char('规格型号', related='goods_id.specs', ondelete='cascade')
+    uom_id = fields.Many2one('uom', related='goods_id.uom_id', ondelete='cascade')
+    surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
+    qty = fields.Float('数量', digits='Quantity')
+    ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
+    ms2_qty = fields.Float('PCB板仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
+    ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
+    note = fields.Char('备注')
+    state = fields.Selection(STATE, '确认状态', related='pick_id.state')
 

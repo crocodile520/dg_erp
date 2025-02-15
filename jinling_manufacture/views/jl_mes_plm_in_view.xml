@@ -27,8 +27,8 @@
             <field name="arch" type="xml">
                 <form string="生产入库单" class="o_sale_order" duplicate="1" delete="0">
                     <header>
-                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
-                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
+                        <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_in_done_groups"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_in_draft_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
                     </header>
@@ -76,7 +76,7 @@
             <field name='name'>jl.mes.plm.in.search</field>
             <field name='model'>jl.mes.plm.in</field>
                 <field name='arch' type='xml'>
-                    <search string='质量检验单搜索'>
+                    <search string='生产入库单搜索'>
                         <field name="name" optional="show"/>
                         <field name="plm_id" optional="show"/>
                         <field name="goods_id" optional="show"/>

@@ -46,7 +46,7 @@ class SellOrder(models.Model):
             ids = self.env['sell.order.review'].search([('order_id', '=', self.id),('state','=','draft')])
             if len(ids):
                 raise UserError('销售评审单未确认，当前无法确认单据')
-            self.create_mes_plm()
+            # self.create_mes_plm()#销售订单产生生产工单暂时取消
             self.write({
                 'state': 'done',
                 'approve_uid': self.env.uid,
@@ -57,7 +57,7 @@ class SellOrder(models.Model):
                 ids = self.env['sell.order.review'].search([('order_id', '=', self.id), ('state', 'in', ('draft','done'))])
                 if not len(ids):
                     raise UserError('当前款式为新款，需要产生销售评审单，当前无法确认单据')
-            self.create_mes_plm()
+            # self.create_mes_plm()
             self.write({
                 'state': 'done',
                 'approve_uid': self.env.uid,

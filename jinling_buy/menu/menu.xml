@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!--根菜单-->
-        <menuitem id="jinling_buy_menu" name="采购业务"/>
+        <menuitem id="jinling_buy_menu" name="采购业务" groups="jinling_buy.jinling_buy_groups"/>
         <menuitem id="buy_menu" name="采购管理" parent="jinling_buy_menu" sequence="1"/>
         <menuitem id="buy_menu_data" name="主数据" parent="jinling_buy_menu" sequence="2"/>
 
@@ -22,7 +22,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="jl_buy_apply_menu" name="采购购货申请" action="jl_buy_apply_action" parent="buy_menu" sequence="10"/>
+        <menuitem id="jl_buy_apply_menu" name="采购购货申请" action="jl_buy_apply_action" parent="buy_menu" sequence="10" groups="jinling_buy.jinling_buy_apply_groups"/>
 
         <record id="jl_buy_order_action" model="ir.actions.act_window">
             <field name="name">采购订单</field>
@@ -31,7 +31,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="jl_buy_order_menu" name="采购订单" action="jl_buy_order_action" parent="buy_menu" sequence="20"/>
+        <menuitem id="jl_buy_order_menu" name="采购订单" action="jl_buy_order_action" parent="buy_menu" sequence="20" groups="jinling_buy.jinling_buy_order_groups"/>
 
         <record id="jl_buy_warehousing_action" model="ir.actions.act_window">
             <field name="name">采购入库单</field>
@@ -47,7 +47,7 @@
               </p>
             </field>
         </record>
-        <menuitem id="jl_buy_warehousing_menu" name="采购入库单" action="jl_buy_warehousing_action" parent="buy_menu" sequence="30"/>
+        <menuitem id="jl_buy_warehousing_menu" name="采购入库单" action="jl_buy_warehousing_action" parent="buy_menu" sequence="30" groups="jinling_buy.jinling_buy_warehousing_groups"/>
 
         <record id="jl_buy_return_action" model="ir.actions.act_window">
             <field name="name">采购退货单</field>
@@ -76,7 +76,7 @@
             <field name="act_window_id" ref="jl_buy_return_action"/>
         </record>
 
-        <menuitem id="jl_buy_return_menu" name="采购退货单" action="jl_buy_return_action" parent="buy_menu" sequence="40"/>
+        <menuitem id="jl_buy_return_menu" name="采购退货单" action="jl_buy_return_action" parent="buy_menu" sequence="40" groups="jinling_buy.jinling_buy_return_groups"/>
 
         <record id="jl_buy_payment_apply_action" model="ir.actions.act_window">
             <field name="name">付款申请单</field>
@@ -85,6 +85,6 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="jl_buy_payment_apply_menu" name="付款申请单" action="jl_buy_payment_apply_action" parent="buy_menu" sequence="50"/>
+        <menuitem id="jl_buy_payment_apply_menu" name="付款申请单" action="jl_buy_payment_apply_action" parent="buy_menu" sequence="50" groups="jinling_buy.jinling_buy_apply_payment_groups"/>
     </data>
 </odoo>

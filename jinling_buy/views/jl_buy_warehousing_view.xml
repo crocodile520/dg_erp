@@ -20,11 +20,11 @@
         <field name="arch" type="xml">
             <form string="采购入库单明细" class="o_sale_order" duplicate="1"  create="0">
                 <header>
-                    <button name='button_done' states='draft' string='入库' type='object' class='oe_highlight' icon="fa-check"/>
-                    <button name='button_rejection' states='draft' string='拒收' type='object' class='btn-warning' icon="fa-times-circle"/>
-                    <button name='button_payment' states='draft,done' string='付款申请单' type='object' class='oe_highlight' icon="fa-check"/>
-                    <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
-                    <button name="button_return" states="done" string="退货" type="object" icon="fa-exchange"/>
+                    <button name='button_done' states='draft' string='入库' type='object' class='oe_highlight' icon="fa-check" groups="jinling_buy.jinling_buy_warehouse_done_groups"/>
+                    <button name='button_rejection' states='draft' string='拒收' type='object' class='btn-warning' icon="fa-times-circle" groups="jinling_buy.jinling_buy_warehouse_rejection_groups"/>
+                    <button name='button_payment' states='draft,done' string='付款申请单' type='object' class='oe_highlight' icon="fa-check" groups="jinling_buy.jinling_buy_warehouse_payment_groups"/>
+                    <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_buy.jinling_buy_warehouse_draft_groups"/>
+                    <button name="button_return" states="done" string="退货" type="object" icon="fa-exchange" groups="jinling_buy.jinling_buy_warehouse_return_groups"/>
                     <button name="button_cancel" states="draft" string="作废" type="object"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
                 </header>
@@ -120,8 +120,8 @@
         <field name="arch" type="xml">
             <form string="采购退货单明细" class="o_sale_order" duplicate="1"  create="0">
                 <header>
-                    <button name='button_out_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check"/>
-                    <button name="button_out_draft" states="done" string="撤销" type="object" icon="fa-reply"/>
+                    <button name='button_out_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check" groups="jinling_buy.jinling_buy_warehouse_done_groups"/>
+                    <button name="button_out_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_buy.jinling_buy_warehouse_draft_groups"/>
                     <button name="button_cancel" states="draft" string="作废" type="object"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
                 </header>

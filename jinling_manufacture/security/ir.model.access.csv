@@ -4,4 +4,8 @@ access_jl_mes_plm_line,access_jl_mes_plm_line,model_jl_mes_plm_line,,1,1,1,1
 access_jl_mes_plm_in,access_jl_mes_plm_in,model_jl_mes_plm_in,,1,1,1,1
 access_jl_mes_plm_refund,access_jl_mes_plm_refund,model_jl_mes_plm_refund,,1,1,1,1
 access_jl_mes_plm_refund_line,access_jl_mes_plm_refund_line,model_jl_mes_plm_refund_line,,1,1,1,1
+
+access_jl_mes_plm_picking,access_jl_mes_plm_picking,model_jl_mes_plm_picking,,1,1,1,1
+access_jl_mes_plm_picking_line,access_jl_mes_plm_picking_line,model_jl_mes_plm_picking_line,,1,1,1,1
+
 access_test,access_test,model_test,,1,1,1,1

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_sell.charge_category">
+        <field name="name">销售</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_sell_groups" model="res.groups">
+        <field name="name">销售</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_apply_groups" model="res.groups">
+        <field name="name">销售申请单</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_groups" model="res.groups">
+        <field name="name">销售订单</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_out_groups" model="res.groups">
+        <field name="name">销售发货单</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_review_groups" model="res.groups">
+        <field name="name">销售评审单</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_apply_done_groups" model="res.groups">
+        <field name="name">销售申请单确认</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_apply_draft_groups" model="res.groups">
+        <field name="name">销售申请单撤销</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_done_groups" model="res.groups">
+        <field name="name">销售订单确认</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_out_groups" model="res.groups">
+        <field name="name">销售订单发货</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_review_groups" model="res.groups">
+        <field name="name">销售订单评审</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_draft_groups" model="res.groups">
+        <field name="name">销售订单撤销</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_out_done_groups" model="res.groups">
+        <field name="name">销售发货单确认</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_out_draft_groups" model="res.groups">
+        <field name="name">销售发货单撤销</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_review_done_groups" model="res.groups">
+        <field name="name">销售评审单确认</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_order_review_draft_groups" model="res.groups">
+        <field name="name">销售评审单撤销</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+
+</odoo>
