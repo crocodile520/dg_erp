@@ -77,7 +77,8 @@
                                         <field name="tax_amount" invisible="1" sum="税额" readonly="1"/>
                                         <field name="subtotal" invisible="1" sum="价税合计" readonly="1"/>
                                         <field name="ms1_qty" optional="show" sum="数量" readonly="1"/>
-                                        <field name="gms1_qty" optional="show" sum="数量" readonly="1"/>
+                                        <field name="ms2_qty" optional="show" sum="数量" readonly="1"/>
+                                        <field name="ms3_qty" optional="show" sum="数量" readonly="1"/>
                                         <field name="note" optional="show"/>
                                         <field name="state" invisible='1'/>
                                     </tree>

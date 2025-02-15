@@ -39,7 +39,10 @@ class SellOrderOut(models.Model):
             if line.warehouse_id.id == 1:
                 if line.qty > line.ms1_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
-            elif line.warehouse_id.id == 5:
+            elif line.warehouse_id.id == 2:
+                if line.qty > line.gms1_qty:
+                    raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
+            elif line.warehouse_id.id == 3:
                 if line.qty > line.gms1_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
             if not line.weight:
@@ -288,13 +291,14 @@ class SellOrderOutLine(models.Model):
 
             for line in cr.dictfetchall():
                 balance_qty.update({
-                    line['goods_id']: {'ms1_qty': line['ms1_qty'], 'gms1_qty': line['gms1_qty']}
+                    line['goods_id']: {'ms1_qty': line['ms1_qty'], 'ms2_qty': line['ms2_qty'],'ms3_qty': line['ms3_qty']}
                 })
         for self in selfs:
             key = self.goods_id.id
             qty_dict = balance_qty[key] if key in balance_qty.keys() else 0
             self.ms1_qty = qty_dict['ms1_qty']
-            self.gms1_qty = qty_dict['gms1_qty']
+            self.ms2_qty = qty_dict['ms2_qty']
+            self.ms3_qty = qty_dict['ms3_qty']
 
     @api.depends('qty', 'price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
@@ -330,8 +334,10 @@ class SellOrderOutLine(models.Model):
     qty = fields.Float('发货数量', digits='Quantity', )
     ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always',
                            compute='_compute_warehouse_balance')
-    gms1_qty = fields.Float('国外成品仓库存数量', digits='Quantity', track_visibility='always',
-                            compute='_compute_warehouse_balance')
+    ms2_qty = fields.Float('PCB板仓库存数量', digits='Quantity', track_visibility='always',
+                           compute='_compute_warehouse_balance')
+    ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always',
+                           compute='_compute_warehouse_balance')
     note = fields.Char('备注', help='如果特殊情况请备注')
     state = fields.Selection(STATE, '确认状态', related='out_id.state')
 
