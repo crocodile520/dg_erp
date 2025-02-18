@@ -80,5 +80,20 @@
         <field name="category_id" ref="jinling_sell.charge_category"/>
     </record>
 
+    <record id="jinling_sell_price_strategy_groups" model="res.groups">
+        <field name="name">销售价格策</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_price_strategy_done_groups" model="res.groups">
+        <field name="name">销售价格策略确认</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
+    <record id="jinling_sell_price_strategy_draft_groups" model="res.groups">
+        <field name="name">销售价格策略撤销</field>
+        <field name="category_id" ref="jinling_sell.charge_category"/>
+    </record>
+
 
 </odoo>

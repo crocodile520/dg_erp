@@ -166,10 +166,10 @@ class SellApplyLine(models.Model):
     @api.depends('qty', 'price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + self.tax_rate / 100)
+            self.tax_price = self.price * (1 + (self.tax_rate / 100))
             self.amount = self.price * self.qty
-            self.tax_amount = self.qty * self.tax_price * self.tax_rate / 100
-            self.subtotal = (self.price * self.qty) + self.tax_amount
+            self.subtotal = self.qty * (1 + (self.tax_rate / 100)) * self.price
+            self.tax_amount = self.subtotal - self.amount
 
     apply_id = fields.Many2one('sell.apply', '销售申请订单', ondelete='cascade')
     ref = fields.Char('客户订单号', related='apply_id.ref')

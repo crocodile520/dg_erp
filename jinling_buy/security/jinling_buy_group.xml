@@ -90,4 +90,19 @@
         <field name="category_id" ref="jinling_buy.charge_category"/>
     </record>
 
+    <record id="jinling_buy_price_strategy_groups" model="res.groups">
+        <field name="name">采购价格策</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_price_strategy_done_groups" model="res.groups">
+        <field name="name">采购价格策略确认</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
+    <record id="jinling_buy_price_strategy_draft_groups" model="res.groups">
+        <field name="name">采购价格策略撤销</field>
+        <field name="category_id" ref="jinling_buy.charge_category"/>
+    </record>
+
 </odoo>

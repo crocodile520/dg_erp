@@ -3,3 +3,8 @@ access_warehouse,access_warehouse,model_warehouse,,1,1,1,1
 access_jl_move,access_jl_move,model_jl_move,,1,1,1,1
 access_jl_move_line,access_jl_move_line,model_jl_move_line,,1,1,1,1
 access_jl_warehouse_balance_report,access_jl_warehouse_balance_report,model_jl_warehouse_balance_report,,1,1,1,1
+access_jl_move_in,access_jl_move_in,model_jl_move_in,,1,1,1,1
+access_jl_move_in_line,access_jl_move_in_line,model_jl_move_in_line,,1,1,1,1
+
+access_jl_move_out,access_jl_move_out,model_jl_move_out,,1,1,1,1
+access_jl_move_out_line,access_jl_move_out_line,model_jl_move_out_line,,1,1,1,1

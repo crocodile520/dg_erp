@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="jl_move_out_view_tree" model="ir.ui.view">
+        <field name="name">Jl Move OUT</field>
+        <field name="model">jl.move.out</field>
+        <field name="arch" type="xml">
+            <tree string="额外出库单" delete="0">
+            <field name="name"/>
+            <field name="user_id"/>
+            <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="jl_move_out_view_form" model="ir.ui.view">
+        <field name="name">Jl Move OUT Form</field>
+        <field name="model">jl.move.out</field>
+        <field name="arch" type="xml">
+            <form string="额外出库单明细" class="o_sale_order" duplicate="1"  create="0">
+                <header>
+                    <button name='button_done' states='draft' string='出库' type='object' class='oe_highlight' icon="fa-check" groups="jinling_warehouse.jinling_move_out_done_groups"/>
+                    <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_warehouse.jinling_move_out_draft_groups"/>
+                    <button name="button_cancel" states="draft" string="作废" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="额外出库单明细行">
+                            <field name='line_ids' attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree string="额外入库单明细" editable='bottom'>
+                                    <field name="goods_id" optional="show" readonly="0"/>
+                                    <field name="describe" optional="show" readonly="1"/>
+                                    <field name="specs" optional="show" readonly="1"/>
+                                    <field name="surface" optional="show" readonly="1"/>
+                                    <field name="uom_id" optional="show" readonly="1"/>
+                                    <field name="type" optional="show" readonly="1"/>
+                                    <field name="warehouse_id" optional="show"/>
+                                    <field name="qty" optional="show" sum="数量"/>
+                                    <field name="note" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="note" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}" placeholder="备注"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id='jl_move_out_view_tree_search' model='ir.ui.view'>
+            <field name='name'>jl.move.out.search</field>
+            <field name='model'>jl.move.out</field>
+                <field name='arch' type='xml'>
+                    <search string='额外出库单搜索'>
+                        <field name="name" optional="show"/>
+                        <field name="user_id" optional="show"/>
+                        <filter name='draft' string='草稿' domain="[('state','=','draft')]"/>
+                        <filter name='done' string='确认' domain="[('state','=','done')]"/>
+                    </search>
+                </field>
+    </record>
+</odoo>

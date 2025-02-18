@@ -53,5 +53,14 @@
 
         <menuitem id="sell_reconciliation_menu" name="对账单" action="jinling_finance.jl_reconciliation_action" parent="sell_order_root" sequence="50" groups="jinling_finance.jinling_finance_groups"/>
 
+        <record id="jl_sell_price_strategy_action" model="ir.actions.act_window">
+            <field name="name">销售价格策略</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.sell.price.strategy</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+        <menuitem id="jl_sell_price_strategy_menu" name="销售价格策略" action="jl_sell_price_strategy_action" parent="sell_order_data" sequence="30" groups="jinling_sell.jinling_sell_price_strategy_groups"/>
+
     </data>
 </odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id='jl_sell_price_strategy_tree_view' model='ir.ui.view'>
+        <field name='name'>销售价格策略</field>
+        <field name='model'>jl.sell.price.strategy</field>
+        <field name='arch' type='xml'>
+            <tree create="true" edit="true" delete="false">
+<!--                <field name='is_lock' />-->
+                <field name='partner_id'/>
+                <field name='goods_id' />
+                <field name='uom_id' force_save="1"/>
+                <field name='goods_class_id'/>
+<!--                <field name='qty_start' />-->
+<!--                <field name='qty_end' />-->
+                <field name='price' />
+                <field name='tax_price' />
+                <field name='tax_rate'/>
+<!--                <field name='start_date' />-->
+<!--                <field name='end_date'/>-->
+                <field name='state'/>
+                <field name='create_uid' string="制单人"/>
+            </tree>
+        </field>
+    </record>
+    <record id='jl_sell_price_strategy_form_view' model='ir.ui.view'>
+        <field name='name'>Jl Sell Price Strategy</field>
+        <field name='model'>jl.sell.price.strategy</field>
+        <field name='arch' type='xml'>
+            <form create="true" edit="true" delete="false">
+                <header>
+                    <button name='button_done' type='object' string='确认' class='oe_highlight' states='draft' groups='jinling_sell.jinling_sell_price_strategy_done_groups'/>
+<!--                    <button name='button_lock' type='object' string='锁定' class='oe_highlight' attrs="{'invisible':[('is_lock','=', True)]}" groups='lexin_buy.buy_price_strategy_lock_groups'/>-->
+<!--                    <button name='button_unlock' type='object' string='解锁' class='oe_highlight' attrs="{'invisible':[('is_lock','=', False)]}" groups='lexin_buy.buy_price_strategy_lock_groups'/>-->
+<!--                    <button name='button_onchange' type='object' string='变更' class='oe_highlight' states='done' groups='lexin_buy.buy_price_strategy_change_groups'/>-->
+                    <button name='button_draft' type='object' string='撤销' states='done' groups='jinling_sell.jinling_sell_price_strategy_draft_groups'/>
+<!--                    <button name='button_review' type='object' string='延期' states='review' groups='lexin_buy.buy_price_strategy_delay_groups'/>-->
+                    <field name='state' statusbar_visible='draft,done' widget='statusbar' readonly='1' />
+<!--                    <field name='is_lock' invisible='1'/>-->
+                </header>
+                <sheet>
+<!--                    <div class="oe_button_box" name="button_box">-->
+<!--                        <button name="action_get_attachment_view" class="oe_stat_button" icon="fa-book" type="object">-->
+<!--                            <field name="attachment_number" widget="statinfo" string="附件上传"/>-->
+<!--                        </button>-->
+<!--                        <button class="oe_stat_button" name="action_change_view" type="object" icon="fa-adjust" attrs="{'invisible':[('change_count','=', 0)]}" >-->
+<!--                        <field name="change_count" widget="statinfo" string="变更单"/>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <field name='ref' invisible='1'/>-->
+                    <group string='基础信息'>
+                        <group>
+                            <field name='partner_id' attrs="{'readonly': [('state','=', 'done')]}"/>
+                            <field name='currency_id' attrs="{'readonly': [('state','=', 'done')]}"/>
+                            <field name='goods_id' attrs="{'readonly': [('state','=', 'done')]}"/>
+                        </group>
+                        <group>
+                            <field name='describe' readonly='1'/>
+                            <field name='specs' readonly='1'/>
+                            <field name='surface' readonly='1'/>
+                            <field name='uom_id' readonly='1' force_save="1"/>
+                        </group>
+                    </group>
+                    <group string='策略信息'>
+                        <group>
+<!--                            <field name='qty_start' attrs="{'readonly': [('state','=', 'done')]}"/>-->
+                            <field name='price' attrs="{'readonly': [('state','=', 'done')]}"/>
+<!--                            <field name='start_date' attrs="{'readonly': [('state','=', 'done')]}"/>-->
+                        </group>
+                        <group>
+<!--                            <field name='qty_end' attrs="{'readonly': [('state','=', 'done')]}"/>-->
+                            <field name='tax_price' attrs="{'readonly': [('state','=', 'done')]}"/>
+                            <field name='tax_rate' attrs="{'readonly': [('state','=', 'done')]}"/>
+<!--                            <field name='end_date' attrs="{'readonly': [('state','=', 'done')]}"/>-->
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="jl_sell_price_strategy_search" model="ir.ui.view">
+        <field name="name">jl.sell.price.strategy.search</field>
+        <field name="model">jl.sell.price.strategy</field>
+        <field name="arch" type="xml">
+            <search string='价格策略搜索视图'>
+                <field name="partner_id"/>
+                <field name="goods_id"/>
+<!--                <field name='end_date'/>-->
+                <filter name='draft' string='草稿' domain="[('state','=','draft')]"/>
+                <filter name='done' string='确认' domain="[('state','=','done')]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

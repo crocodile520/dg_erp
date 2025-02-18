@@ -15,6 +15,7 @@
         'views/jl_buy_order_view.xml',
         'views/jl_buy_warehousing_view.xml',
         'views/jl_buy_payment_apply_view.xml',
+        'views/jl_buy_price_strategy_view.xml',
         'report/paperformat.xml',
         'report/report_buy_order_template.xml',
         'menu/menu.xml',

@@ -7,3 +7,4 @@ access_jl_buy_order_line,access_jl_buy_order_line,model_jl_buy_order_line,,1,1,1
 access_jl_buy_warehousing,access_jl_buy_warehousing,model_jl_buy_warehousing,,1,1,1,1
 access_jl_buy_payment_apply,access_jl_buy_payment_apply,model_jl_buy_payment_apply,,1,1,1,1
 access_jl_buy_payment_apply_line,access_jl_buy_payment_apply_line,model_jl_buy_payment_apply_line,,1,1,1,1
+access_jl_buy_price_strategy,access_jl_buy_price_strategy,model_jl_buy_price_strategy,,1,1,1,1

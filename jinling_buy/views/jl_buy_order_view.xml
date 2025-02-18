@@ -4,7 +4,7 @@
         <field name="name">Jl Buy Order Tree</field>
         <field name="model">jl.buy.order</field>
         <field name="arch" type="xml">
-            <tree string="采购订单" delete="0">
+            <tree string="采购订单" delete="0" create="0">
                 <field name="name" optional="show"/>
                 <field name="apply_id" optional="show"/>
                 <field name="user_id" optional="show"/>

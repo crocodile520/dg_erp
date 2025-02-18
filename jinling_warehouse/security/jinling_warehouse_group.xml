@@ -10,4 +10,24 @@
         <field name="category_id" ref="jinling_warehouse.charge_category"/>
     </record>
 
+    <record id="jinling_move_in_done_groups" model="res.groups">
+        <field name="name">额外入库单确认</field>
+        <field name="category_id" ref="jinling_warehouse.charge_category"/>
+    </record>
+
+    <record id="jinling_move_in_draft_groups" model="res.groups">
+        <field name="name">额外入库单撤销</field>
+        <field name="category_id" ref="jinling_warehouse.charge_category"/>
+    </record>
+
+    <record id="jinling_move_out_done_groups" model="res.groups">
+        <field name="name">额外出库单确认</field>
+        <field name="category_id" ref="jinling_warehouse.charge_category"/>
+    </record>
+
+    <record id="jinling_move_out_draft_groups" model="res.groups">
+        <field name="name">额外出库单撤销</field>
+        <field name="category_id" ref="jinling_warehouse.charge_category"/>
+    </record>
+
 </odoo>
