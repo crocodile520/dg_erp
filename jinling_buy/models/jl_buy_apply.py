@@ -119,10 +119,10 @@ class JlBuyApplyLine(models.Model):
     @api.depends('qty','price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + self.tax_rate / 100)
+            self.tax_price = self.price * (1 + (self.tax_rate / 100))
             self.amount = self.price * self.qty
-            self.tax_amount = self.qty * self.tax_price * self.tax_rate / 100
-            self.subtotal = (self.price * self.qty) + self.tax_amount
+            self.subtotal = self.qty * (1+(self.tax_rate/100)) * self.price
+            self.tax_amount = self.subtotal - self.amount
 
 
     buy_apply_id = fields.Many2one('jl.buy.apply','采购申请单',index=True, ondelete='cascade')
@@ -134,11 +134,11 @@ class JlBuyApplyLine(models.Model):
     goods_class_id = fields.Many2one('goods.class', '商品分类', related='goods_id.goods_class_id', ondelete='cascade', help='分类名称')
     warehouse_id = fields.Many2one('warehouse', '仓库', help='关联仓库，购票物品存储某个仓库')
     qty = fields.Float('数量', digits='Quantity', )
-    price = fields.Float('单价', digits='Price', )
+    price = fields.Float('单价', digits='quantity', )
     tax_price = fields.Float('含税单价', digits='Price', compute='_compute_all_amount')
     tax_rate = fields.Float('税率(%)', digits='Amount', )
     tax_amount = fields.Float('税额', digits='Amount', compute='_compute_all_amount')
     amount = fields.Float('金额', digits='Amount', compute='_compute_all_amount')
     subtotal = fields.Float('价税合计', digits='Amount', compute='_compute_all_amount')
-    note = fields.Char('备注')
+    note = fields.Char('备注',related='goods_id.remark')
     state = fields.Selection(STATE, '确认状态', related='buy_apply_id.state')

@@ -160,13 +160,13 @@ class JlBuyOrderLine(models.Model):
     _name = 'jl.buy.order.line'
     _description = '采购订单明细'
 
-    @api.depends('qty','price', 'tax_price', 'tax_rate')
+    @api.depends('qty', 'price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + self.tax_rate / 100)
+            self.tax_price = self.price * (1 + (self.tax_rate / 100))
             self.amount = self.price * self.qty
-            self.tax_amount = self.qty * self.tax_price * self.tax_rate / 100
-            self.subtotal = (self.price * self.qty) + self.tax_amount
+            self.subtotal = self.qty * (1 + (self.tax_rate / 100)) * self.price
+            self.tax_amount = self.subtotal - self.amount
 
     order_id = fields.Many2one('jl.buy.order','采购订单',index=True, ondelete='cascade')
     delivery_date = fields.Date('要求交货日期', related='order_id.delivery_date', required=True)
