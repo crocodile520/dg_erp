@@ -7,7 +7,7 @@
                     <style>
                         /* 整体样式调整 */
                         body {
-                        font-size: 12px; /* 减小整体字体大小 */
+                        font-size: 14px; /* 减小整体字体大小 */
                         line-height: 1.2; /* 减小行高 */
                         }
                         .page {
@@ -32,7 +32,7 @@
                         /* 表格样式 */
                         .table {
                         margin-bottom: 5px;
-                        font-size: 11px;
+                        font-size: 14px;
                         }
                         .table td, .table th {
                         padding: 3px; /* 减小单元格内边距 */
@@ -52,7 +52,7 @@
                         }
                         .company-logo {
                         width: 140px; /* 调整logo大小 */
-                        height: 60px;
+                        height: 100px;
                         <!--                        margin-right: 20px;-->
                         flex-shrink: 0; /* 防止logo被压缩 */
                         }
@@ -93,8 +93,8 @@
                                      alt="公司logo"/>
                             </div>
                             <div class="company-info">
-                                <h2 style="margin-left:125px;margin-top:-50px">东莞市新训电子科技有限公司</h2>
-                                <p style="margin-left:125px;">东莞市清溪镇谢坑村委会金剑工业园C栋2楼</p>
+                                <h2 style="margin-top:-70px;text-align: center;">东莞市新训电子科技有限公司</h2>
+                                <p style="margin-top:10px;text-align: center;">东莞市清溪镇谢坑村委会金剑工业园C栋2楼</p>
                             </div>
                         </div>
                         <h3>订购合同</h3>
@@ -246,16 +246,16 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <p>供方盖章：___________</p>
-                                <p>供方负责人：___________</p>
-                                <p>签订日期：___________
+                                <p style="padding-top:30px">供方盖章：_____________________________________</p>
+                                <p style="margin-top:30px">供方负责人：___________________________________</p>
+                                <p style="margin-top:30px">签订日期：___________________________________
                                     <!--                                    <span t-field=""/>-->
                                 </p>
                             </div>
                             <div class="col-6">
-                                <p>需方盖章：___________</p>
-                                <p>需方负责人审核：___________</p>
-                                <p>签订日期：___________
+                                <p style="padding-top:30px">需方盖章：___________________________________</p>
+                                <p style="margin-top:30px">需方负责人审核：___________________________________</p>
+                                <p style="margin-top:30px">签订日期：___________________________________
                                     <!--                                    <span t-field=""/>-->
                                 </p>
                             </div>
