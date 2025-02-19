@@ -27,6 +27,7 @@ class JlBuyApply(models.Model):
             'apply_user_id': self.env.user.employee_id.id,
             'apply_id': self.id,
             'supplier_id': self.supplier_id.id,
+            'is_tax': self.is_tax,
         })
         order_id.write({
             'line_ids': [(0, 0, {
@@ -105,6 +106,7 @@ class JlBuyApply(models.Model):
     line_ids = fields.One2many('jl.buy.apply.line', 'buy_apply_id', ondelete='cascade',
                                help='采购申请单明细行')
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
+    is_tax = fields.Boolean('是否含税')
     note = fields.Char('备注')
 
 

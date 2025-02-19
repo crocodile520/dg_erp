@@ -41,6 +41,7 @@
                         </group>
                         <group>
                             <field name="supplier_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="is_tax" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
                     <notebook>

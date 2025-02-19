@@ -94,7 +94,8 @@
                             </div>
                             <div class="company-info">
                                 <h2 style="margin-top:-70px;text-align: center;">东莞市新训电子科技有限公司</h2>
-                                <p style="margin-top:10px;text-align: center;">东莞市清溪镇谢坑村委会金剑工业园C栋2楼</p>
+                                <p style="margin-top:10px;text-align: center;">东莞市清溪镇谢坑村委会金剑工业园C栋2楼
+                                </p>
                             </div>
                         </div>
                         <h3>订购合同</h3>
@@ -184,8 +185,6 @@
                                     </td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td colspan="2">订单编号:</td>
                                     <td>
                                         <span t-field="doc.name"/>
@@ -197,44 +196,52 @@
                                     <th>品名</th>
                                     <th>单位</th>
                                     <th>订单数量</th>
-                                    <th>单价</th>
-                                    <th>金额</th>
-                                    <th>含税单价</th>
-                                    <th>含税金额</th>
+                                    <th>
+                                        <t t-if="doc.is_tax">含税单价</t>
+                                        <t t-else="">不含税单价</t>
+                                    </th>
+                                    <th>
+                                        <t t-if="doc.is_tax">含税金额</t>
+                                        <t t-else="">不含税金额</t>
+                                    </th>
                                     <th>备注</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="doc.line_ids" t-as="line">
                                     <tr>
-                                        <td style="text-align: center;" >
+                                        <td style="text-align: center;">
                                             <span t-esc="line_index + 1"/>
                                         </td>
-                                        <td style="text-align: center;" >
-                                            <span  t-field="line.goods_id.name"/>
+                                        <td style="text-align: center;">
+                                            <span t-field="line.goods_id.name"/>
                                         </td>
-                                        <td style="text-align: center;" >
-                                            <span  t-field="line.goods_id.describe"/>
+                                        <td style="text-align: center;">
+                                            <span t-field="line.goods_id.describe"/>
                                         </td>
-                                        <td style="text-align: center;" >
+                                        <td style="text-align: center;">
                                             <span t-field="line.goods_id.uom_id.name"/>
                                         </td>
-                                        <td style="text-align: center;" >
+                                        <td style="text-align: center;">
                                             <span t-field="line.qty"/>
                                         </td>
-                                        <td style="text-align: center;" >
-                                            <span t-field="line.price"/>
+                                        <td style="text-align: center;">
+                                            <t t-if="doc.is_tax">
+                                                <span t-field="line.tax_price"/>  <!-- 含税单价 -->
+                                            </t>
+                                            <t t-elif="not doc.is_tax">
+                                                <span t-field="line.price"/>  <!-- 不含税单价 -->
+                                            </t>
                                         </td>
-                                        <td style="text-align: center;" >
-                                            <span t-field="line.amount"/>
+                                        <td style="text-align: center;">
+                                            <t t-if="doc.is_tax">
+                                                <span t-field="line.subtotal"/>  <!-- 含税金额 -->
+                                            </t>
+                                            <t t-elif="not doc.is_tax">
+                                                <span t-field="line.amount"/>  <!-- 不含税金额 -->
+                                            </t>
                                         </td>
-                                        <td style="text-align: center;" >
-                                            <span t-field="line.tax_price"/>
-                                        </td>
-                                        <td style="text-align: center;" >
-                                            <span t-field="line.subtotal"/>
-                                        </td>
-                                        <td style="text-align: center;" >
+                                        <td style="text-align: center;">
                                             <span t-field="line.note"/>
                                         </td>
                                     </tr>
@@ -247,21 +254,22 @@
                                     </td>
                                     <td></td>
                                     <td style="text-align: center;">
-                                        <span t-esc="sum(doc.line_ids.mapped('amount'))"
-                                              t-options='{"widget": "float", "precision": 2}'/>
-                                    </td>
-                                    <td></td>
-                                    <td style="text-align: center;">
-                                        <span t-esc="sum(doc.line_ids.mapped('subtotal'))"
-                                              t-options='{"widget": "float", "precision": 2}'/>
+                                        <t t-if="doc.is_tax">
+                                            <span t-esc="sum(doc.line_ids.mapped('subtotal'))"
+                                                  t-options='{"widget": "float", "precision": 2}'/>
+                                        </t>
+                                        <t t-elif="not doc.is_tax">
+                                            <span t-esc="sum(doc.line_ids.mapped('amount'))"
+                                                  t-options='{"widget": "float", "precision": 2}'/>
+                                        </t>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">交货地点:清溪谢坑村金剑工业园C栋2楼</td>
-                                    <td colspan="4">收货人:李龙洲15362016827</td>
+                                    <td colspan="3">收货人:李龙洲15362016827</td>
                                     <td colspan="1">交货日期</td>
-                                    <td colspan="2">
+                                    <td colspan="1">
                                         <span t-field="doc.delivery_date"/>
                                     </td>
 

@@ -52,6 +52,7 @@
                             <field name="type" optional="show" readonly="1"/>
                             <field name="order_state" optional="show" readonly="1"/>
                             <field name="apply_id" optional="show" readonly="1"/>
+                            <field name="is_tax" optional="show" readonly="1"/>
                         </group>
                     </group>
                     <notebook>

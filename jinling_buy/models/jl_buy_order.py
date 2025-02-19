@@ -152,6 +152,7 @@ class JlBuyOrder(models.Model):
     order_state = fields.Selection(ORDER_STATE,'入库状态',default='not_stock',help='货物入库状态')
     line_ids = fields.One2many('jl.buy.order.line','order_id','采购订单明细行',ondelete='cascade',help='关联采购订单明细行')
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft',track_visibility='always')
+    is_tax = fields.Boolean('是否含税')
     note = fields.Char('备注')
     buy_warehousing_count = fields.Integer('采购入库订单数量', compute='_compute_buy_warehousing_count')
 
