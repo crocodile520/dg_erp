@@ -168,7 +168,7 @@ class SellApplyLine(models.Model):
         for self in selfs:
             self.tax_price = self.price * (1 + (self.tax_rate / 100))
             self.amount = self.price * self.qty
-            self.subtotal = self.qty * (1 + (self.tax_rate / 100)) * self.price
+            self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount
 
     apply_id = fields.Many2one('sell.apply', '销售申请订单', ondelete='cascade')
