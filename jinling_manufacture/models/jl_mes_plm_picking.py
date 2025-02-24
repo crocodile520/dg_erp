@@ -165,3 +165,8 @@ class JlMesPlmPickingLine(models.Model):
     note = fields.Char('备注')
     state = fields.Selection(STATE, '确认状态', related='pick_id.state')
 
+class JlMoveLine(models.Model):
+    _inherit = 'jl.move'
+
+    pick_id = fields.Many2one('jl.mes.plm.picking', '生产领料单', ondelete='cascade', help='绑定生产入库单')
+

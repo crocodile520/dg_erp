@@ -22,7 +22,7 @@ class JlMesPlmRefund(models.Model):
     def button_done(self):
         self.ensure_one()
         if not self.line_ids:
-            raise UserError('领料单明细不允许为空')
+            raise UserError('退料单明细不允许为空')
         for line in self.line_ids:
             if not line.warehouse_id.id:
                 raise UserError('%s商品 仓库不允许为空' % line.goods_id.name)
@@ -34,7 +34,7 @@ class JlMesPlmRefund(models.Model):
             })
         move_id = self.env['jl.move'].create({
             'plm_id': self.plm_id.id,
-            'pick_id': self.id,
+            'refund_id': self.id,
             'origin': self._name,
             'state': 'done',
             'line_in_ids': [(0, 0, {
@@ -153,4 +153,9 @@ class JlMesPlmRefundLine(models.Model):
     ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', compute='_compute_warehouse_balance')
     note = fields.Char('备注')
     # state = fields.Selection(STATE, '确认状态', related='pick_id.state')
+
+class JlMoveLine(models.Model):
+    _inherit = 'jl.move'
+
+    refund_id = fields.Many2one('jl.mes.plm.refund', '生产退料单', ondelete='cascade', help='绑定生产入库单')
 
