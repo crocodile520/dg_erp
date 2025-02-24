@@ -21,6 +21,12 @@
         <menuitem id="goods_menu" name="商品" action="goods_action" parent="jinling_goods.goods_setting_menu" sequence="10"/>
         <menuitem id="uom_menu" name="单位" action="uom_action" parent="jinling_goods.goods_setting_menu" sequence="30"/>
 
+<!--        <record id="goods_class_action" model="ir.actions.act_window">-->
+<!--            <field name="name">商品分类</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">goods.class</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
         <record id="goods_class_action" model="ir.actions.act_window">
             <field name="name">商品分类</field>
             <field name="type">ir.actions.act_window</field>

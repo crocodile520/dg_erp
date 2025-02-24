@@ -4,6 +4,7 @@
     'category': 'jinling_erp',
     'description':'用于金凌工程管理',
     'version': '16.0',
+    'license': 'LGPL-3',
     'depends': ['mail','jinling_goods','jinling_manufacture'],
     'data': [
         'security/jinling_engineering_group.xml',

@@ -1,0 +1,17 @@
+/* static/src/scss/goods_class.scss */
+.o_goods_class_split {
+    display: flex;
+    width: 100%;
+}
+
+.o_goods_class_left {
+    width: 250px;
+    border-right: 1px solid #dee2e6;
+    overflow: auto;
+    padding: 8px;
+}
+
+.o_goods_class_right {
+    flex: 1;
+    padding: 8px;
+}

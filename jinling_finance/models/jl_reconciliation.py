@@ -82,6 +82,11 @@ class JlReconciliation(models.Model):
                                help='对账单明细')
     note = fields.Char('备注')
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
+    approve_uid = fields.Many2one('res.users',
+                                  '确认人',
+                                  copy=False,
+                                  ondelete='restrict',
+                                  help='确认单据的人')
 
 
 class JlReconciliationLine(models.Model):

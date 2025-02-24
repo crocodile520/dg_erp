@@ -12,6 +12,8 @@ READONLY_STATES = {
 ORDER_TYPE = [
     ('PCBA','PCBA'),
     ('materials','材料'),
+    ('CP','成品'),
+    ('BCP','半成品'),
 ]
 
 PARTNER_AREA = [

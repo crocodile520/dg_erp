@@ -34,7 +34,7 @@
                         <button name='button_start' states='draft' string='开工' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_start_groups"/>
                         <button name='button_stop' states='start' string='暂停' type='object' class='btn-warning' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_stop_groups"/>
                         <button name='button_continue' states='stop' string='继续' type='object' class='oe_highlight' icon="fa-check" groups="jinling_manufacture.jinling_manufacture_continue_groups"/>
-                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_draft_groups"/>
+                        <button name="button_draft" states="done,start" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_draft_groups"/>
                         <button name="button_mes_plm_refund" states="done" string="退料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
                         <button name="button_mes_plm_picking" states="start" string="领料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>

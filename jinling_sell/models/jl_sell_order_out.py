@@ -45,8 +45,8 @@ class SellOrderOut(models.Model):
             elif line.warehouse_id.id == 3:
                 if line.qty > line.gms1_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
-            if not line.weight:
-                raise UserError('%s商品请填写重量' % line.goods_id.name)
+            # if not line.weight:
+            #     raise UserError('%s商品请填写重量' % line.goods_id.name)
         move_id = self.env['jl.move'].create({
             'sell_order_id': self.order_id.id,
             'order_out_id': self.id,

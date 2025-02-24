@@ -4,6 +4,7 @@
     'category': 'jinling_erp',
     'description':'用于金凌电子采购管理',
     'version': '16.0',
+    'license': 'LGPL-3',
     'depends': ['mail','jinling_warehouse','jinling_goods',],
     'data': [
         'security/jinling_buy_group.xml',

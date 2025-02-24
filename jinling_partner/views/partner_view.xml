@@ -10,6 +10,7 @@
                 <field name="main_mobile" optional="show"/>
                 <field name="main_contact" optional="show"/>
                 <field name="address" optional="show"/>
+                <field name="user_id" optional="show"/>
             </tree>
         </field>
     </record>
@@ -33,6 +34,7 @@
                         </group>
                         <group string="管理信息">
                             <field name="code" optional="show"/>
+                            <field name="user_id" optional="show"/>
                         </group>
                     </group>
                     <group>

@@ -4,6 +4,7 @@
     'category': 'jinling_erp',
     'description':'用于金凌电子客户管理',
     'version': '16.0',
+    'license': 'LGPL-3',
     'depends': ['base','mail',],
     'data': [
         'security/ir.model.access.csv',

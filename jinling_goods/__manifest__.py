@@ -4,6 +4,7 @@
     'category': 'jinling_erp',
     'description':'用于金凌电子产品管理',
     'version': '16.0',
+    'license': 'LGPL-3',
     'depends': ['mail'],
     'data': [
         'security/jinling_goods_group.xml',
@@ -15,6 +16,12 @@
         'views/goods_bom_view.xml',
         'menu/menu.xml'
     ],
+    'assets': {
+            'web.assets_backend': [
+                'jinling_goods/static/src/js/goods_class_list.js',
+                'jinling_goods/static/src/scss/goods_class.scss',
+            ],
+        },
     'installable': True,
     'application': True,
     'auto_install': False,

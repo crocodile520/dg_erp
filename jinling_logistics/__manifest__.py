@@ -3,6 +3,7 @@
     'author': 'Tuna团队',
     'category': 'jinling_erp',
     'description':'用于金凌物流管理',
+    'license': 'LGPL-3',
     'version': '16.0',
     'depends': ['mail','jinling_partner','jinling_sell'],
     'data': [

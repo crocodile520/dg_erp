@@ -68,7 +68,7 @@
                                         <field name="uom_id" optional="show"/>
                                         <field name="warehouse_id" optional="show"/>
                                         <field name="delivery_date" optional="show"/>
-                                        <field name="weight" optional="show" sum="数量"/>
+                                        <field name="weight" optional="show" sum="数量" invisible="1"/>
                                         <field name="qty" optional="show" sum="数量"/>
                                         <field name="price" invisible="1" readonly="1"/>
                                         <field name="tax_price" invisible="1" readonly="1"/>

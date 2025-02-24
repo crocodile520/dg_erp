@@ -12,7 +12,7 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_draft': 1}</field>
         </record>
-        <menuitem id="sell_apply" name="销售申请单" action="sell_apply_action" parent="sell_order_root" sequence="10" groups="jinling_sell.jinling_sell_apply_groups"/>
+<!--        <menuitem id="sell_apply" name="销售申请单" action="sell_apply_action" parent="sell_order_root" sequence="10" groups="jinling_sell.jinling_sell_apply_groups"/>-->
 
         <record id="sell_order_action" model="ir.actions.act_window">
             <field name="name">销售订单</field>

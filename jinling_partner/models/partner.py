@@ -14,3 +14,11 @@ class Partner(models.Model):
     main_mobile = fields.Char('联系人')
     main_contact = fields.Char('联系人电话')
     address = fields.Char('送货地址')
+    user_id = fields.Many2one(
+        'hr.employee',
+        '销售员',
+        ondelete='restrict',
+        readonly=False,
+        default=lambda self: self.env.user.employee_id.id,
+        help='销售员',
+    )

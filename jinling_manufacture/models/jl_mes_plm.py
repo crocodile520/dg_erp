@@ -24,20 +24,23 @@ class LxMesPlm(models.Model):
 
     def button_start(self):
         self.ensure_one()
-        eng_ids = self.env['jl.engineering'].search([('plm_id','=',self.id)])
-        if len(eng_ids.filtered(lambda _l: _l.state == 'draft').ids) > 0:
-            raise UserError('工程工单没有确认无法开工,请联系工程部相关人员')
-        # for line in self.line_ids:
-        #     pick_id = self.env['jl.mes.plm.picking'].create({
-        #         'plm_id':self.id
-        #     })
-        #     pick_id.write({
-        #         'line_ids':[(0,0,{
-        #             'plm_line_id':line.id,
-        #             'goods_id':line.goods_id.id,
-        #             'qty':line.qty
-        #         })]
-        #     })
+        # eng_ids = self.env['jl.engineering'].search([('plm_id','=',self.id)])
+        # if len(eng_ids.filtered(lambda _l: _l.state == 'draft').ids) > 0:
+        #     raise UserError('工程工单没有确认无法开工,请联系工程部相关人员')
+        if not self.warehouse_id:
+            raise UserError('仓库不允许为空！请填写仓库')
+        for line in self.line_ids:
+            line.neck_qty = line.qty
+            pick_id = self.env['jl.mes.plm.picking'].create({
+                'plm_id':self.id
+            })
+            pick_id.write({
+                'line_ids':[(0,0,{
+                    'plm_line_id':line.id,
+                    'goods_id':line.goods_id.id,
+                    'qty':line.qty
+                })]
+            })
         self.write({
             'state': 'start',
             'task_type':'task'
@@ -75,7 +78,7 @@ class LxMesPlm(models.Model):
         if self.state == 'draft':
             raise UserError('请不要重复撤销')
         quality_ids = self.env['jl.quality'].search([('plm_id','=',self.id)])
-        # pick_ids = self.env['jl.mes.plm.picking'].search([('plm_id','=',self.id)])
+        pick_ids = self.env['jl.mes.plm.picking'].search([('plm_id','=',self.id)])
         ref_ids = self.env['jl.mes.plm.refund'].search([('plm_id','=',self.id)])
         if any(quality_ids):
             for quality_id in quality_ids:

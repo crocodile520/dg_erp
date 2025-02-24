@@ -11,6 +11,7 @@ class JlWarehouseBalanceReport(models.Model):
     specs = fields.Char('规格型号', related='goods_id.specs', ondelete='cascade')
     surface = fields.Char('颜色', related='goods_id.surface', ondelete='cascade')
     uom_id = fields.Many2one('uom', related='goods_id.uom_id', ondelete='cascade')
+    goods_class_id = fields.Many2one('goods.class', related='goods_id.goods_class_id', ondelete='cascade')
     ms1_qty = fields.Float('成品仓库存数量', digits='Quantity', track_visibility='always', default=0)
     ms2_qty = fields.Float('PCB板仓数量', digits='Quantity', track_visibility='always', default=0)
     ms3_qty = fields.Float('原材料仓库存数量', digits='Quantity', track_visibility='always', default=0)

@@ -1,12 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="goods_class_view_tree" model="ir.ui.view">
-        <field name="name">Goods Class</field>
+    <record id="view_goods_class_list" model="ir.ui.view">
+        <field name="name">goods.class.list</field>
         <field name="model">goods.class</field>
         <field name="arch" type="xml">
-            <tree string="商品分类" delete="0">
-                <field name="name" optional="show"/>
-                <field name="note" optional="show"/>
+            <tree js_class="goods_class_split_list">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="parent_id"/>
+                <field name="sequence"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_goods_class_tree_left" model="ir.ui.view">
+        <field name="name">goods.class.tree.left</field>
+        <field name="model">goods.class</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="type=='view'" decoration-muted="type!='view'">
+                <field name="name"/>
+                <field name="type" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- 自定义 JS 视图 -->
+    <record id="view_goods_class_split_js" model="ir.ui.view">
+        <field name="name">goods.class.split.js</field>
+        <field name="model">goods.class</field>
+        <field name="arch" type="xml">
+            <tree js_class="goods_class_split_list">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="parent_id"/>
+                <field name="sequence"/>
+                <field name="note"/>
             </tree>
         </field>
     </record>
