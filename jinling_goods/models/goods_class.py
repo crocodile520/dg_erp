@@ -42,6 +42,8 @@ class GoodsClass(models.Model):
         string='所有子分类'
     )
 
+    is_search = fields.Boolean('默认筛选', default=False)
+
     @api.depends('child_id', 'child_id.child_id')
     def _compute_child_all_categories(self):
         for record in self:

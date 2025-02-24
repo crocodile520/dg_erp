@@ -60,4 +60,16 @@
             </form>
         </field>
     </record>
+
+    <record id='goods_tree_search' model='ir.ui.view'>
+            <field name='name'>goods.search</field>
+            <field name='model'>goods</field>
+                <field name='arch' type='xml'>
+                    <search string='商品搜索'>
+                        <field name="name" optional="show"/>
+                        <field name="goods_class_id" optional="show"/>
+                        <field name="is_search" optional="show"/>
+                    </search>
+                </field>
+        </record>
 </odoo>

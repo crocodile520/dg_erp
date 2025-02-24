@@ -18,6 +18,7 @@ class Goods(models.Model):
     specs = fields.Char('规格型号')
     surface = fields.Char('颜色')
     goods_class_id = fields.Many2one('goods.class','商品分类',ondelete='cascade',help='分类名称')
+    is_search = fields.Boolean('默认筛选',related='goods_class_id.is_search')
     uom_id = fields.Many2one('uom','单位')
     active = fields.Boolean('启用', default=True)
     remark = fields.Char('备注',)
