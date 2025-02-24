@@ -18,8 +18,8 @@
     ],
     'assets': {
             'web.assets_backend': [
-                'jinling_goods/static/src/js/goods_class_list.js',
-                'jinling_goods/static/src/scss/goods_class.scss',
+                # 'jinling_goods/static/src/js/goods_class_list.js',
+                # 'jinling_goods/static/src/scss/goods_class.scss',
             ],
         },
     'installable': True,
