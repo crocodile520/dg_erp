@@ -6,47 +6,47 @@
                 <t t-call="web.basic_layout">
                     <style>
                         .page {
-                            padding: 10px;
-                            font-size: 12px;
+                        padding: 10px;
+                        font-size: 12px;
                         }
                         .main-table {
-                            width: 100%;
-                            border-collapse: collapse;
+                        width: 100%;
+                        border-collapse: collapse;
                         }
                         .main-table td {
-                            border: 1px solid black;
-                            padding: 4px;
+                        border: 1px solid black;
+                        padding: 4px;
                         }
                         .header-table {
-                            width: 100%;
-                            margin-bottom: 10px;
+                        width: 100%;
+                        margin-bottom: 10px;
                         }
                         .company-logo {
-                            width: 140px;
-                            height: 60px;
+                        width: 140px;
+                        height: 60px;
                         }
                         .company-name {
-                            font-size: 24px;
-                            font-weight: bold;
-                            text-align: center;
+                        font-size: 24px;
+                        font-weight: bold;
+                        text-align: center;
                         }
                         .document-title {
-                            font-size: 20px;
-                            font-weight: bold;
-                            text-align: center;
+                        font-size: 20px;
+                        font-weight: bold;
+                        text-align: center;
                         }
                         .info-label {
-                            width: 100px;
-                            font-weight: bold;
+                        width: 100px;
+                        font-weight: bold;
                         }
                         .signature-table {
-                            width: 100%;
-                            margin-top: 20px;
+                        width: 100%;
+                        margin-top: 20px;
                         }
                         .signature-table td {
-                            width: 33.33%;
-                            padding: 10px;
-                            text-align: center;
+                        width: 33.33%;
+                        padding: 10px;
+                        text-align: center;
                         }
                     </style>
 
@@ -55,7 +55,8 @@
                         <table class="header-table">
                             <tr>
                                 <td width="140">
-                                    <img class="company-logo" t-att-src="'/jinling_sell/static/description/logo.png'" alt="公司logo"/>
+                                    <img class="company-logo" t-att-src="'/jinling_sell/static/description/logo.png'"
+                                         alt="公司logo"/>
                                 </td>
                                 <td>
                                     <div class="company-name">东莞市新训电子科技有限公司</div>
@@ -68,15 +69,23 @@
                         <table class="main-table">
                             <tr>
                                 <td class="info-label">收货单位：</td>
-                                <td><span t-field="doc.partner_id.name"/></td>
+                                <td>
+                                    <span t-field="doc.partner_id.name"/>
+                                </td>
                                 <td width="100">NO.：</td>
-                                <td width="200"><span t-field="doc.name"/></td>
+                                <td width="200">
+                                    <span t-field="doc.name"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="info-label">收货地址：</td>
-                                <td><span t-field="doc.partner_id.address"/></td>
+                                <td>
+                                    <span t-field="doc.partner_id.address"/>
+                                </td>
                                 <td>交货日期：</td>
-                                <td><span t-field="doc.delivery_date"/></td>
+                                <td>
+                                    <span t-field="doc.delivery_date"/>
+                                </td>
                             </tr>
                         </table>
 
@@ -97,21 +106,41 @@
                             <tbody>
                                 <t t-foreach="doc.line_ids" t-as="line">
                                     <tr>
-                                        <td><span t-field="line.ref"/></td>
-                                        <td><span t-field="line.goods_id.describe"/></td>
-                                        <td><span t-field="line.goods_id.specs"/></td>
-                                        <td><span t-field="line.goods_id.uom_id.name"/></td>
-                                        <td><span t-field="line.qty"/></td>
-                                        <td><span t-field="line.price"/></td>
-                                        <td><span t-field="line.amount"/></td>
-                                        <td><span t-field="line.note"/></td>
+                                        <td>
+                                            <span t-field="line.ref"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.goods_id.describe"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.goods_id.specs"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.goods_id.uom_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.qty"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.price"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.amount"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.note"/>
+                                        </td>
                                     </tr>
                                 </t>
                                 <tr>
                                     <td colspan="4" style="text-align: center;">合计</td>
-                                    <td><span t-esc="sum(doc.line_ids.mapped('qty'))"/></td>
+                                    <td>
+                                        <span t-esc="sum(doc.line_ids.mapped('qty'))"/>
+                                    </td>
                                     <td></td>
-                                    <td><span t-esc="sum(doc.line_ids.mapped('amount'))"/></td>
+                                    <td>
+                                        <span t-esc="sum(doc.line_ids.mapped('amount'))"/>
+                                    </td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -120,8 +149,11 @@
                         <!-- 金额大写表格 -->
                         <table class="main-table" style="margin-top: 10px;">
                             <tr>
-                                <td>¥：<span t-esc="doc.amount_total_words"/></td>
-                                <td>运费:<span t-esc="doc.carriage"/>/元</td>
+                                <td>¥：
+                                    <span t-esc="doc.amount_total_words"/>
+                                </td>
+                                <td>运费:<span t-esc="doc.carriage"/>/元
+                                </td>
                             </tr>
                         </table>
 
@@ -130,15 +162,24 @@
                             <tr>
                                 <td>
                                     收货单位及经手人（盖章）：
-                                    <br/><br/>
+                                    <br/>
+                                    <br/>
                                 </td>
                                 <td>
-                                    送货单位及经手人（盖章）：<span t-field="doc.user_id.name"/>
-                                    <br/><br/>
+                                    送货单位及经手人（盖章）：
+                                    <t t-if="doc.user_id">
+                                        <span t-field="doc.user_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span></span>
+                                    </t>
+                                    <br/>
+                                    <br/>
                                 </td>
                                 <td>
                                     送货单位及财务：
-                                    <br/><br/>
+                                    <br/>
+                                    <br/>
                                 </td>
                             </tr>
                         </table>
