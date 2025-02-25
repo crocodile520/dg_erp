@@ -327,7 +327,7 @@ class SellOrderLine(models.Model):
             self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount
 
-    @api.depends('goods_id')
+    @api.onchange('goods_id')
     def _compute_goods_price(self):
         cr = self._cr
         ids = self.goods_id.ids
@@ -367,7 +367,7 @@ class SellOrderLine(models.Model):
     uom_id = fields.Many2one('uom',related='goods_id.uom_id',ondelete='cascade')
     qty = fields.Float('数量',digits='Quantity',)
     out_qty = fields.Float('已发货数量',digits='Quantity',default=0)
-    price = fields.Float('单价',digits='Price',compute='_compute_goods_price')
+    price = fields.Float('单价',digits='Price')
     tax_price = fields.Float('含税单价',digits='Price',compute='_compute_all_amount')
     tax_rate = fields.Float('税率(%)',digits='Amount',default=0)
     tax_amount = fields.Float('税额',digits='Amount',compute='_compute_all_amount')
