@@ -132,7 +132,7 @@
                                     <br/><br/>
                                 </td>
                                 <td>
-                                    送货单位及经手人（盖章）：唐丽君
+                                    送货单位及经手人（盖章）：<span t-field="doc.user_id.name"/>
                                     <br/><br/>
                                 </td>
                                 <td>
