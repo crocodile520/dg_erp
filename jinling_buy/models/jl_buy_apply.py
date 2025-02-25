@@ -117,7 +117,7 @@ class JlBuyApplyLine(models.Model):
     @api.depends('qty', 'price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + (self.tax_rate / 100))
+            self.tax_price = round(self.price * (1 + (self.tax_rate / 100)),4)
             self.amount = self.price * self.qty
             self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount

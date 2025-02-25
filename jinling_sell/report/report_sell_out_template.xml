@@ -121,6 +121,7 @@
                         <table class="main-table" style="margin-top: 10px;">
                             <tr>
                                 <td>¥：<span t-esc="doc.amount_total_words"/></td>
+                                <td>运费:<span t-esc="doc.carriage"/>/元</td>
                             </tr>
                         </table>
 

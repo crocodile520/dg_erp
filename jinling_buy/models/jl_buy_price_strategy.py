@@ -51,7 +51,7 @@ class JlBuyPriceStrategy(models.Model):
     @api.depends('price', 'tax_rate')
     def _compute_tax_price(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + (self.tax_rate / 100))
+            self.tax_price = round(self.price * (1 + (self.tax_rate / 100)),4)
 
 
     company_id = fields.Many2one(

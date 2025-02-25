@@ -271,6 +271,7 @@ class SellOrderOut(models.Model):
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
     rec_count = fields.Integer('对账单数量',compute='_compute_rec_count')
     amount_total = fields.Float('总金额', digits='Amount', compute='_compute_total_amount')
+    carriage = fields.Float('运费', digits='Amount')
     amount_total_words = fields.Char('大写金额',compute='_compute_amount_total_words')
 
 

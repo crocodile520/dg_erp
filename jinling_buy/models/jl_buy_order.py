@@ -164,7 +164,7 @@ class JlBuyOrderLine(models.Model):
     @api.depends('qty', 'price', 'tax_price', 'tax_rate')
     def _compute_all_amount(selfs):
         for self in selfs:
-            self.tax_price = self.price * (1 + (self.tax_rate / 100))
+            self.tax_price = round(self.price * (1 + (self.tax_rate / 100)),4)
             self.amount = self.price * self.qty
             self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount
@@ -185,6 +185,6 @@ class JlBuyOrderLine(models.Model):
     tax_amount = fields.Float('税额', digits='Amount', compute='_compute_all_amount')
     amount = fields.Float('金额', digits='Amount', compute='_compute_all_amount')
     subtotal = fields.Float('价税合计', digits='Amount', compute='_compute_all_amount')
-    note = fields.Char('备注')
+    note = fields.Char('备注',related='goods_id.remark')
     state = fields.Selection(STATE, '确认状态', related='order_id.state')
 

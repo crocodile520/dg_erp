@@ -46,6 +46,7 @@
                                 <field name="delivery_number" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="delivery_date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="carriage" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             </group>
                             <group>
                                 <field name="partner_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
