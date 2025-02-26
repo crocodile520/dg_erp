@@ -167,12 +167,6 @@
                                 </td>
                                 <td>
                                     送货单位及经手人（盖章）：
-                                    <t t-if="doc.user_id">
-                                        <span t-field="doc.user_id.name"/>
-                                    </t>
-                                    <t t-else="">
-                                        <span></span>
-                                    </t>
                                     <br/>
                                     <br/>
                                 </td>
