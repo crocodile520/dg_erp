@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="outsourcing_menu" name="委外生产" groups="jinling_outsourcing.jinling_outsourcing_groups"/>
+        <menuitem id="outsourcing_root_menu" name="委外生产管理" parent="outsourcing_menu" sequence="1"/>
+        <menuitem id="outsourcing_setting_menu" name="设置" parent="outsourcing_menu" sequence="2"/>
+
+        <menuitem id="outsourcing_goods_menu" name="商品" action="jinling_goods.goods_action" parent="jinling_outsourcing.outsourcing_setting_menu" sequence="10"/>
+
+        <record id="mes_ous_action" model="ir.actions.act_window">
+            <field name="name">委外生产工单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.ous</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_ous_menu" name="委外生产工单" action="mes_ous_action" parent="jinling_outsourcing.outsourcing_root_menu" sequence="10" groups="jinling_outsourcing.jinling_outsourcing_groups"/>
+
+        <record id="mes_ous_in_action" model="ir.actions.act_window">
+            <field name="name">委外生产入库单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.ous.in</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_ous_in_menu" name="委外生产入库单" action="mes_ous_in_action" parent="jinling_outsourcing.outsourcing_root_menu" sequence="20" groups="jinling_outsourcing.jinling_outsourcing_in_groups"/>
+
+        <record id="mes_ous_picking_action" model="ir.actions.act_window">
+            <field name="name">委外生产领料单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.ous.picking</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_ous_picking_menu" name="委外生产领料单" action="mes_ous_picking_action" parent="jinling_outsourcing.outsourcing_root_menu" sequence="30" groups="jinling_outsourcing.jinling_outsourcing_picking_groups"/>
+
+        <record id="mes_ous_refund_action" model="ir.actions.act_window">
+            <field name="name">委外生产退料单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.mes.ous.refund</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_ous_refund_menu" name="委外生产退料单" action="mes_ous_refund_action" parent="jinling_outsourcing.outsourcing_root_menu" sequence="40" groups="jinling_outsourcing.jinling_outsourcing_return_groups"/>
+
+        <record id="mes_ous_quality_action" model="ir.actions.act_window">
+            <field name="name">委外质检单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.ous.quality</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+        <menuitem id="mes_ous_quality_menu" name="委外质检单" action="mes_ous_quality_action" parent="jinling_outsourcing.outsourcing_root_menu" sequence="40" groups="jinling_outsourcing.jinling_outsourcing_quality_groups"/>
+
+
+    </data>
+</odoo>

@@ -7,3 +7,4 @@ greenlet==1.1.3
 gevent==22.8.0
 alibabacloud_dysmsapi20170525==2.0.2
 Pillow==8.1.2
+paramiko

@@ -22,7 +22,7 @@ class Goods(models.Model):
     uom_id = fields.Many2one('uom','单位')
     active = fields.Boolean('启用', default=True)
     remark = fields.Char('备注',)
-    state = fields.Selection(STATE,'确认状态',help='单据状态',default='draft')
+    state = fields.Selection(STATE,'确认状态',help='单据状态',default='draft',track_visibility='always')
 
 
     def button_done(self):

@@ -14,6 +14,7 @@
         'views/jl_move_in_view.xml',
         'views/jl_move_out_view.xml',
         'report/jl_warehouse_balance_report_view.xml',
+        'report/jl_warehouse_balance_warn_report_view.xml',
         'menu/menu.xml',
 
     ],

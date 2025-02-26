@@ -47,7 +47,7 @@ class JlMesPlmPicking(models.Model):
             'pick_id': self.id,
             'origin': self._name,
             'state': 'done',
-            'line_in_ids': [(0, 0, {
+            'line_out_ids': [(0, 0, {
                 'warehouse_id': line.warehouse_id.id,
                 'goods_id': line.goods_id.id,
                 'goods_qty': line.qty,

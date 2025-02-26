@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_outsourcing.charge_category">
+        <field name="name">委外生产</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_outsourcing_groups" model="res.groups">
+        <field name="name">委外生产</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_in_groups" model="res.groups">
+        <field name="name">委外生产入库单</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_picking_groups" model="res.groups">
+        <field name="name">委外生产领料单</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_return_groups" model="res.groups">
+        <field name="name">委外生产退料单</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_done_groups" model="res.groups">
+        <field name="name">委外生产单确认</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_draft_groups" model="res.groups">
+        <field name="name">委外生产单撤销</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_start_groups" model="res.groups">
+        <field name="name">委外生产单开工</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_stop_groups" model="res.groups">
+        <field name="name">委外生产单暂停</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_continue_groups" model="res.groups">
+        <field name="name">委外生产单继续</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_refund_groups" model="res.groups">
+        <field name="name">委外生产单退料</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_quality_groups" model="res.groups">
+        <field name="name">委外质检单</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_in_done_groups" model="res.groups">
+        <field name="name">委外生产入库单确认</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_in_draft_groups" model="res.groups">
+        <field name="name">委外生产入库单撤销</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_picking_done_groups" model="res.groups">
+        <field name="name">委外生产领料单确认</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_picking_draft_groups" model="res.groups">
+        <field name="name">委外生产领料单撤销</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_return_done_groups" model="res.groups">
+        <field name="name">委外生产退料单确认</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_return_draft_groups" model="res.groups">
+        <field name="name">委外生产退料单撤销</field>
+        <field name="category_id" ref="jinling_outsourcing.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_quality_done_groups" model="res.groups">
+        <field name="name">委外质量检验单确认</field>
+        <field name="category_id" ref="jinling_programme.charge_category"/>
+    </record>
+
+    <record id="jinling_outsourcing_quality_draft_groups" model="res.groups">
+        <field name="name">委外质量检验单撤销</field>
+        <field name="category_id" ref="jinling_programme.charge_category"/>
+    </record>
+
+
+
+</odoo>

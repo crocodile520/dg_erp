@@ -60,7 +60,7 @@ class JlMesPlmRefund(models.Model):
             line.plm_line_id.write({
                 'refund_qty': float(line.plm_line_id.refund_qty) - float(line.qty)
             })
-        ids = self.env['jl.move'].search([('pick_id','=',self.id),('plm_id','=',self.plm_id.id),('state','=','done')])
+        ids = self.env['jl.move'].search([('refund_id','=',self.id),('plm_id','=',self.plm_id.id),('state','=','done')])
         for id in ids:
             id.unlink()
         self.write({
