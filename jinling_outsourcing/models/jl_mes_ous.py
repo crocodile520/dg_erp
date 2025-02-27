@@ -31,16 +31,16 @@ class LxMesOus(models.Model):
         self.ensure_one()
         if not self.warehouse_id:
             raise UserError('仓库不允许为空！请填写仓库')
+        pick_id = self.env['jl.mes.ous.picking'].create({
+            'ous_id': self.id
+        })
         for line in self.line_ids:
             line.neck_qty = line.qty
-            ous_id = self.env['jl.mes.ous.picking'].create({
-                'ous_id':self.id
-            })
-            ous_id.write({
-                'line_ids':[(0,0,{
-                    'ous_line_id':line.id,
-                    'goods_id':line.goods_id.id,
-                    'qty':line.qty
+            pick_id.write({
+                'line_ids': [(0, 0, {
+                    'ous_line_id': line.id,
+                    'goods_id': line.goods_id.id,
+                    'qty': line.qty
                 })]
             })
         self.write({
@@ -211,16 +211,21 @@ class LxMesOus(models.Model):
     def button_mes_ous_picking(self):
         '''创建领料单'''
 
-        ous_pick_id = self.env['jl.mes.ous.picking'].create({
-            'ous_id':self.id
+        ids = self.env['jl.mes.ous.picking'].search([('ous_id', '=', self.id), ('state', '=', 'draft')])
+        if ids:
+            ids.unlink()
+        pick_id = self.env['jl.mes.ous.picking'].create({
+            'ous_id': self.id
         })
-        ous_pick_id.write({
-            'line_ids':[(0,0,{
-                'ous_line_id':line.id,
-                'goods_id':line.goods_id.id,
-                'qty':line.qty
-            }) for line in self.line_ids]
-        })
+        for line in self.line_ids:
+            if line.neck_qty > 0:
+                pick_id.write({
+                    'line_ids': [(0, 0, {
+                        'ous_line_id': line.id,
+                        'goods_id': line.goods_id.id,
+                        'qty': line.neck_qty
+                    })]
+                })
 
     def _compute_quality_count(selfs):
         for self in selfs:
