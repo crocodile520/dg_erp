@@ -73,6 +73,7 @@
                                 <field name="delivery_date" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="task_type" optional="show" readonly="1"/>
                                 <field name="warehouse_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+<!--                                <field name="is_picking" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>-->
                             </group>
                             <group>
                                 <field name="goods_id" readonly="0"/>

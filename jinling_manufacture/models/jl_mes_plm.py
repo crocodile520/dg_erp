@@ -29,16 +29,16 @@ class LxMesPlm(models.Model):
         #     raise UserError('工程工单没有确认无法开工,请联系工程部相关人员')
         if not self.warehouse_id:
             raise UserError('仓库不允许为空！请填写仓库')
+        pick_id = self.env['jl.mes.plm.picking'].create({
+            'plm_id': self.id
+        })
         for line in self.line_ids:
             line.neck_qty = line.qty
-            pick_id = self.env['jl.mes.plm.picking'].create({
-                'plm_id':self.id
-            })
             pick_id.write({
-                'line_ids':[(0,0,{
-                    'plm_line_id':line.id,
-                    'goods_id':line.goods_id.id,
-                    'qty':line.qty
+                'line_ids': [(0, 0, {
+                    'plm_line_id': line.id,
+                    'goods_id': line.goods_id.id,
+                    'qty': line.qty
                 })]
             })
         self.write({
@@ -208,17 +208,21 @@ class LxMesPlm(models.Model):
 
     def button_mes_plm_picking(self):
         '''创建领料单'''
-
+        ids = self.env['jl.mes.plm.picking'].search([('plm_id','=',self.id),('state','=','draft')])
+        if ids:
+            ids.unlink()
         pick_id = self.env['jl.mes.plm.picking'].create({
             'plm_id':self.id
         })
-        pick_id.write({
-            'line_ids':[(0,0,{
-                'plm_line_id':line.id,
-                'goods_id':line.goods_id.id,
-                'qty':line.qty
-            }) for line in self.line_ids]
-        })
+        for line in self.line_ids:
+            if line.neck_qty > 0:
+                pick_id.write({
+                    'line_ids': [(0, 0, {
+                        'plm_line_id': line.id,
+                        'goods_id': line.goods_id.id,
+                        'qty': line.neck_qty
+                    })]
+                })
 
     def _compute_quality_count(selfs):
         for self in selfs:
@@ -286,6 +290,7 @@ class LxMesPlm(models.Model):
     picking_count = fields.Integer('生产领料单数量', compute='_compute_picking_count')
     refund_count = fields.Integer('生产退料单数量', compute='_compute_refund_count')
     note = fields.Char('备注')
+    # is_picking = fields.Boolean('批量领料', default=True)
 
 
 

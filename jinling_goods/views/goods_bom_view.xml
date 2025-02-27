@@ -26,7 +26,7 @@
                 <form string="产品BOM工艺" class="o_sale_order" duplicate="1" delete="0">
                     <header>
                         <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight' icon="fa-check" groups="jinling_goods.jinling_goods_bom_done_groups"/>
-                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_goods.jinling_goods_bom_draft_groups"/>
+                        <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply" groups="jinling_goods.jinling_goods_bom_done_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
                     </header>
