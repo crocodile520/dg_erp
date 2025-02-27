@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_manufacture_picking_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+                            .report-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                            }
+                            .report-table th,
+                            .report-table td {
+                                border: 1px solid black;
+                                padding: 4px 8px;
+                            }
+                            .header-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            .header-table td {
+                                border: 1px solid black;
+                                padding: 4px 8px;
+                            }
+                            .title {
+                                font-size: 24px;
+                                text-align: center;
+                                margin: 20px 0;
+                                font-weight: bold;
+                            }
+<!--                            .yellow-bg {-->
+<!--                                background-color: ;-->
+<!--                            }-->
+                        </style>
+
+                        <!-- 标题 -->
+                        <div class="title">生产工单发料单</div>
+
+                        <!-- 头部信息表格 -->
+                        <table class="header-table">
+                            <tr>
+                                <td width="15%">单据编号：</td>
+                                <td width="35%"><span t-field="doc.name"/></td>
+                                <td width="15%">商品：</td>
+                                <td width="35%"><span t-field="doc.plm_id.goods_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td>单据日期：</td>
+                                <td><span t-field="doc.date"/></td>
+                                <td>产品名称：</td>
+                                <td><span t-field="doc.plm_id.goods_id.describe"/></td>
+                            </tr>
+                            <tr>
+                                <td>数量：</td>
+                                <td><span t-field="doc.plm_id.qty"/></td>
+                                <td>规格型号：</td>
+                                <td><span t-field="doc.plm_id.goods_id.specs"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- 明细表格 -->
+                        <table class="report-table">
+                            <thead>
+                                <tr>
+                                    <th>商品</th>
+                                    <th>产品名称</th>
+                                    <th>单位</th>
+                                    <th>发料仓库</th>
+                                    <th>总数量</th>
+                                    <th>发料数量</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.goods_id.name"/></td>
+                                        <td><span t-field="line.goods_id.describe"/></td>
+                                        <td><span t-field="line.uom_id.name"/></td>
+                                        <td><span t-field="line.warehouse_id.name"/></td>
+                                        <td><span t-field="line.plm_line_id.qty"/></td>
+                                        <td><span t-field="line.qty"/></td>
+                                        <td><span t-field="line.note"/></td>
+                                    </tr>
+                                </t>
+                                <!-- 合计行 -->
+                                <tr>
+                                    <td colspan="4">合计:</td>
+                                    <td class="yellow-bg text-right">
+                                        <t t-set="total_plm_qty" t-value="sum(doc.line_ids.mapped('plm_line_id.qty'))"/>
+                                        <span t-esc="'%.2f' % total_plm_qty"/>
+                                    </td>
+                                    <td class="yellow-bg text-right">
+                                        <t t-set="total_qty" t-value="sum(doc.line_ids.mapped('qty'))"/>
+                                        <span t-esc="'%.2f' % total_qty"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

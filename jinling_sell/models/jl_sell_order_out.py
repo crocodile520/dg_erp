@@ -273,6 +273,7 @@ class SellOrderOut(models.Model):
     amount_total = fields.Float('总金额', digits='Amount', compute='_compute_total_amount')
     carriage = fields.Float('运费', digits='Amount')
     amount_total_words = fields.Char('大写金额',compute='_compute_amount_total_words')
+    shop_id = fields.Many2one('sell.shop', '店铺', ondelete='cascade', help='销售店铺')
 
 
 class SellOrderOutLine(models.Model):

@@ -14,6 +14,8 @@
         'views/jl_mes_plm_in_view.xml',
         'views/jl_mes_plm_picking_view.xml',
         'views/jl_mes_plm_refund_view.xml',
+        'report/paperformat.xml',
+        'report/report_manufacture_picking_template.xml',
         'menu/menu.xml'
     ],
     'installable': True,

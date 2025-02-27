@@ -8,3 +8,4 @@ access_sell_order_out_line,access_sell_order_out_line,model_sell_order_out_line,
 access_sell_order_review,access_sell_order_review,model_sell_order_review,,1,1,1,1
 access_sell_order_review_line,access_sell_order_review_line,model_sell_order_review_line,,1,1,1,1
 access_jl_sell_price_strategy,access_jl_sell_price_strategy,model_jl_sell_price_strategy,,1,1,1,1
+access_sell_shop,access_sell_shop,model_sell_shop,,1,1,1,1

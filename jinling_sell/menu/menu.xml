@@ -62,5 +62,14 @@
         </record>
         <menuitem id="jl_sell_price_strategy_menu" name="销售价格策略" action="jl_sell_price_strategy_action" parent="sell_order_data" sequence="30" groups="jinling_sell.jinling_sell_price_strategy_groups"/>
 
+        <record id="jl_sell_shop_action" model="ir.actions.act_window">
+            <field name="name">销售店铺</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sell.shop</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_sell_shop_menu" name="销售店铺" action="jl_sell_shop_action" parent="sell_order_data" sequence="40"/>
+
+
     </data>
 </odoo>

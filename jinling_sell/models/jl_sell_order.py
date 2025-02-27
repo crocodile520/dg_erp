@@ -293,7 +293,7 @@ class SellOrder(models.Model):
     address = fields.Char('送货地址', related='partner_id.address')
     date = fields.Date('单据日期', default=lambda self: fields.Date.context_today(self), required=True)
     delivery_date = fields.Date('交货日期', default=lambda self: fields.Date.context_today(self), required=True)
-    order_type = fields.Selection(ORDER_TYPE,'订单类型',default='PCBA', help='购货订单的类型')
+    order_type = fields.Selection(ORDER_TYPE,'订单类型',default='CP', help='购货订单的类型')
     partner_area = fields.Selection(PARTNER_AREA,'客户区域',default='home',help='客户订购的区域')
     line_ids = fields.One2many('sell.order.line','order_id',ondelete='cascade',
                                help='销售订单明细行')

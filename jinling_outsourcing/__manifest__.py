@@ -15,6 +15,8 @@
         'views/jl_mes_ous_picking_view.xml',
         'views/jl_mes_ous_refund_view.xml',
         'views/jl_ous_quality_view.xml',
+        'report/paperformat.xml',
+        'report/report_ous_picking_template.xml',
         'menu/menu.xml'
     ],
     'installable': True,

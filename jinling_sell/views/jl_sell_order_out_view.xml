@@ -55,6 +55,7 @@
                                 <field name="main_mobile" optional="show"/>
                                 <field name="main_contact" optional="show"/>
                                 <field name="address" optional="show"/>
+                                <field name="shop_id" domain="[('user_id', '=', user_id)]"/>
                             </group>
                         </group>
                         <notebook>

@@ -149,6 +149,9 @@
                         <!-- 金额大写表格 -->
                         <table class="main-table" style="margin-top: 10px;">
                             <tr>
+                                <td>
+                                    店铺:<span t-esc="doc.shop_id.name"/>
+                                </td>
                                 <td>¥：
                                     <span t-esc="doc.amount_total_words"/>
                                 </td>

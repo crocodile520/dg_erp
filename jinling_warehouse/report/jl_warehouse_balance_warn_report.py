@@ -29,5 +29,5 @@ class JlWarehouseBalanceWarnReport(models.Model):
                     CREATE OR REPLACE VIEW jl_warehouse_balance_warn_report as(
                     select row_number() over(order by jwbr.id) id,jwbr.goods_id as goods_id,jwbr.ms1_qty,jwbr.ms2_qty,jwbr.ms3_qty 
                     from jl_warehouse_balance_report jwbr
-                    where jwbr.ms1_qty < 1000 or jwbr.ms2_qty < 1000 or jwbr.ms2_qty < 1000
+                    where  jwbr.ms3_qty < 2000
                     )''')
