@@ -85,6 +85,34 @@
 
                         }
 
+                        .row {
+                        display: flex;
+                        justify-content: space-between;
+                        }
+                        .col-6 {
+                        width: 48%;
+                        }
+
+                        .table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        }
+                        .table, .table th, .table td {
+                        border: 1px solid black;
+                        }
+
+                        .img1 {
+                        position: relative;
+                        }
+
+                        .company-logo1 {
+                        position: absolute;
+                        top: -120px; /* 负值向上移动 */
+                        left:530px; /* 可以调整水平位置 */
+                        width: 100px;
+                        height: auto;
+                        }
+
                     </style>
                     <div class="page">
                         <div class="company-header">
@@ -289,22 +317,29 @@
                             （六）违约责任，解决方式：双方产生纠纷应协商解决，协商不成则按《中华人民共和国合同法》的相关规定执行。
                         </p>
 
-                        <div class="row">
-                            <div class="col-6">
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <div style="width: 48%; display: inline-block; vertical-align: top;">
                                 <p style="padding-top:30px">供方盖章：_____________________________________</p>
                                 <p style="margin-top:30px">供方负责人：___________________________________</p>
-                                <p style="margin-top:30px">签订日期：___________________________________
-                                    <!--                                    <span t-field=""/>-->
-                                </p>
+                                <p style="margin-top:30px">签订日期：___________________________________</p>
                             </div>
-                            <div class="col-6">
+                            <div style="width: 48%; display: inline-block; vertical-align: top;">
                                 <p style="padding-top:30px">需方盖章：___________________________________</p>
                                 <p style="margin-top:30px">需方负责人审核：___________________________________</p>
-                                <p style="margin-top:30px">签订日期：___________________________________
-                                    <!--                                    <span t-field=""/>-->
-                                </p>
+                                <p style="margin-top:30px">签订日期：___________________________________</p>
                             </div>
                         </div>
+                        <div class="img1">
+                            <t t-if="doc.state == 'done'">
+                                <img class="company-logo1"
+                                     t-att-src="'/jinling_buy/static/description/zhang.jpg'"
+                                     alt="公司章印logo"/>
+                            </t>
+<!--                            <t t-elif="doc.state == 'draft'">-->
+<!--                                <span t-field="line.price"/>  &lt;!&ndash; 不含税单价 &ndash;&gt;-->
+<!--                            </t>-->
+                        </div>
+
                         <p>说明：此订购合同单在定货方没有付清全部货款，最终解释权归东莞市新训电子科技有限公司所属。</p>
                     </div>
                 </t>

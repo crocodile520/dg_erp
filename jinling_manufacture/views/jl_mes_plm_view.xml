@@ -37,6 +37,7 @@
                         <button name="button_draft" states="done,start" string="撤销" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_draft_groups"/>
                         <button name="button_mes_plm_refund" states="done" string="退料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
                         <button name="button_mes_plm_picking" states="start" string="领料" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
+                        <button name="create_quality" states="start" string="质检" type="object" icon="fa-reply" groups="jinling_manufacture.jinling_manufacture_refund_groups"/>
                         <button name="button_cancel" states="draft" string="作废" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,start,done,stop" readonly="1"/>
                     </header>

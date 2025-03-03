@@ -42,5 +42,13 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="goods_bom_menu" name="产品BOM" action="goods_bom_action" parent="jinling_goods.goods_root_menu" sequence="1" groups="jinling_goods.jinling_goods_bom_groups"/>
+
+        <record id="goods_bom_file_action" model="ir.actions.act_window">
+            <field name="name">产品BOM文件管理</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">goods.bom.file</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="goods_bom_file_menu" name="产品BOM文件管理" action="goods_bom_file_action" parent="jinling_goods.goods_root_menu" sequence="2" groups="jinling_goods.jinling_goods_bom_file_groups"/>
     </data>
 </odoo>

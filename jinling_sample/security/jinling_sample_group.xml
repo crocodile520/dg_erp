@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="jinling_sample.charge_category">
+        <field name="name">样品业务</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="jinling_sample_groups" model="res.groups">
+        <field name="name">样品</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_apply_groups" model="res.groups">
+        <field name="name">样品申请单</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+    <record id="jinling_sample_order_groups" model="res.groups">
+        <field name="name">样品订单</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_picking_groups" model="res.groups">
+        <field name="name">样品领料单</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_in_groups" model="res.groups">
+        <field name="name">样品入库单</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_apply_done_groups" model="res.groups">
+        <field name="name">样品申请单确认</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+     <record id="jinling_sample_apply_draft_groups" model="res.groups">
+        <field name="name">样品申请单撤销</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+     <record id="jinling_sample_order_done_groups" model="res.groups">
+        <field name="name">样品订单确认</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+     <record id="jinling_sample_order_draft_groups" model="res.groups">
+        <field name="name">样品订单撤销</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_picking_done_groups" model="res.groups">
+        <field name="name">样品领料单确认</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_picking_draft_groups" model="res.groups">
+        <field name="name">样品领料单撤销</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_in_done_groups" model="res.groups">
+        <field name="name">样品入库单确认</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+    <record id="jinling_sample_in_draft_groups" model="res.groups">
+        <field name="name">样品入库单撤销</field>
+        <field name="category_id" ref="jinling_sample.charge_category"/>
+    </record>
+
+</odoo>

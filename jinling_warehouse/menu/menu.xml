@@ -59,5 +59,7 @@
         <menuitem id="jl_warehouse_mes_ous_menu" name="委外生产入库单" action="jinling_outsourcing.mes_ous_in_action" parent="warehouse_root" sequence="50" groups="jinling_outsourcing.jinling_outsourcing_in_groups"/>
         <menuitem id="jl_warehouse_mes_ous_picking_menu" name="委外生产领料单" action="jinling_outsourcing.mes_ous_picking_action" parent="warehouse_root" sequence="60" groups="jinling_outsourcing.jinling_outsourcing_picking_groups"/>
         <menuitem id="jl_warehouse_mes_ous_refund_menu" name="委外生产退料单" action="jinling_outsourcing.mes_ous_refund_action" parent="warehouse_root" sequence="70" groups="jinling_outsourcing.jinling_outsourcing_return_groups"/>
+        <menuitem id="jl_warehouse_sample_picking_menu" name="样品领料单" action="jinling_sample.jl_sample_picking_action" parent="warehouse_root" sequence="80" groups="jinling_sample.jinling_sample_picking_groups"/>
+        <menuitem id="jl_warehouse_sample_in_menu" name="样品入库单" action="jinling_sample.jl_sample_in_action" parent="warehouse_root" sequence="90" groups="jinling_sample.jinling_sample_in_groups"/>
     </data>
 </odoo>

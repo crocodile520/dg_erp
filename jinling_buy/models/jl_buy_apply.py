@@ -40,7 +40,9 @@ class JlBuyApply(models.Model):
             }) for line in self.line_ids]
         })
         self.write({
-            'state': 'done'
+            'state': 'done',
+            'approve_uid': self.env.uid,
+            'approve_date': fields.Datetime.now(self),
         })
 
     def button_draft(self):
@@ -56,7 +58,9 @@ class JlBuyApply(models.Model):
                 else:
                     id.unlink()
         self.write({
-            'state': 'draft'
+            'state': 'draft',
+            'approve_uid': None,
+            'approve_date': None,
         })
 
     def button_cancel(self):
@@ -108,6 +112,12 @@ class JlBuyApply(models.Model):
     state = fields.Selection(STATE, '确认状态', help='单据状态', default='draft', track_visibility='always')
     is_tax = fields.Boolean('是否含税')
     note = fields.Char('备注')
+    approve_uid = fields.Many2one('res.users',
+                                  '确认人',
+                                  copy=False,
+                                  ondelete='restrict',
+                                  help='确认单据的人')
+    approve_date = fields.Datetime('确认日期', copy=False)
 
 
 class JlBuyApplyLine(models.Model):

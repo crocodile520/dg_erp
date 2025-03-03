@@ -15,6 +15,11 @@
         <field name="category_id" ref="jinling_goods.charge_category"/>
     </record>
 
+    <record id="jinling_goods_bom_file_groups" model="res.groups">
+        <field name="name">产品bom文件管理</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
     <record id="jinling_goods_bom_done_groups" model="res.groups">
         <field name="name">产品bom单确认</field>
         <field name="category_id" ref="jinling_goods.charge_category"/>
@@ -22,6 +27,16 @@
 
     <record id="=jinling_goods_bom_draft_groups" model="res.groups">
         <field name="name">产品bom单撤销</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
+    <record id="jinling_goods_bom_file_done_groups" model="res.groups">
+        <field name="name">产品bom文件管理确认</field>
+        <field name="category_id" ref="jinling_goods.charge_category"/>
+    </record>
+
+    <record id="=jinling_goods_bom_file_draft_groups" model="res.groups">
+        <field name="name">产品bom文件管理撤销</field>
         <field name="category_id" ref="jinling_goods.charge_category"/>
     </record>
 </odoo>

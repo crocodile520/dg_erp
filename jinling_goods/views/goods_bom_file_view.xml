@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="goods_bom_file_view_tree" model="ir.ui.view">
+        <field name="name">Goods Bom File Tree</field>
+        <field name="model">goods.bom.file</field>
+        <field name="arch" type="xml">
+            <tree string="bom文件管理" delete="0">
+                <field name="name" optional="show"/>
+                <field name="goods_id" optional="show"/>
+                <field name="describe" optional="show"/>
+                <field name="specs" optional="show"/>
+                <field name="surface" optional="show"/>
+                <field name="uom_id" optional="show"/>
+                <field name="goods_class_id" optional="show"/>
+                <field name="active" invisible='1'/>
+                <field name="state" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="goods_bom_file_view_form" model="ir.ui.view">
+        <field name="name">Goods Bom File Form</field>
+        <field name="model">goods.bom.file</field>
+        <field name="arch" type="xml">
+            <form string="bom文件管理">
+                <header>
+                    <button name='button_done' states='draft' string='确认' type='object' class='oe_highlight'
+                            icon="fa-check" groups="jinling_goods.jinling_goods_bom_file_done_groups"/>
+                    <button name="button_draft" states="done" string="撤销" type="object" icon="fa-reply"
+                            groups="jinling_goods.jinling_goods_bom_file_done_groups"/>
+                    <button name="button_cancel" states="draft" string="作废" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_get_attachment_view" class="oe_stat_button" icon="fa-book" type="object">
+                            <field name="attachment_number" widget="statinfo" string="文件上传"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="goods_id" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="describe" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="specs" optional="show"/>
+                            <field name="surface" optional="show" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="goods_class_id" optional="show"/>
+                            <field name="uom_id" optional="show"/>
+                        </group>
+                        <group>
+                            <field name="attachment_ids" string="文件上传" widget="many2many_binary" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name='note' optional="show" attrs="{'readonly': [('state','!=','draft')]}"
+                               placeholder="暂无备注信息"/>
+                        <group>
+                            <field name="approve_uid" readonly="1" string="确认人"/>
+                            <field name="approve_date" readonly="1" string="确认时间"/>
+                        </group>
+                        <group>
+                            <field name="create_uid" readonly="1" string="制单人"/>
+                            <field name="create_date" readonly="1" string="录单时间"/>
+                            <field name="write_date" readonly="1" string="最后修改时间"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

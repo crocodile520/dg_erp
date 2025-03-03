@@ -25,6 +25,8 @@
                 <search>
                     <field name="goods_id"/>
                     <field name="goods_class_id"/>
+                    <filter string="商品分类" name="goods_class_id_filter" domain="[]"
+                    context="{'group_by': 'goods_class_id'}"/>
                 </search>
             </field>
         </record>

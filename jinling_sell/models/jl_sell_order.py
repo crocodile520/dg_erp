@@ -258,6 +258,26 @@ class SellOrder(models.Model):
                 'order_id': self.id
             })
 
+    def _compute_attachment_number(self):
+        """附件上传"""
+        attachment_data = self.env["ir.attachment"].read_group(
+            [("res_model", "=", self._name), ("res_id", "in", self.ids)],
+            ["res_id"],
+            ["res_id"],
+        )
+        attachment = dict(
+            (data["res_id"], data["res_id_count"]) for data in attachment_data
+        )
+        for expense in self:
+            expense.attachment_number = attachment.get(expense.id, 0)
+
+    def action_get_attachment_view(self):
+        """附件上传动作视图"""
+        self.ensure_one()
+        res = self.env.ref("base.action_attachment").sudo().read()[0]
+        res["domain"] = [("res_model", "=", self._name), ("res_id", "in", self.ids)]
+        res["context"] = {"default_res_model": self._name, "default_res_id": self.id}
+        return res
 
 
     def _compute_order_review_count(selfs):
@@ -310,6 +330,9 @@ class SellOrder(models.Model):
                                   ondelete='restrict',
                                   help='确认单据的人')
     approve_date = fields.Datetime('确认日期', copy=False)
+    attachment_number = fields.Integer(
+        compute="_compute_attachment_number", string="附件上传"
+    )
 
 
 

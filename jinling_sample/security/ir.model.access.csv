@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jl_sample_apply,access_jl_sample_apply,model_jl_sample_apply,,1,1,1,1
+access_jl_sample_order,access_jl_sample_order,model_jl_sample_order,,1,1,1,1
+access_jl_sample_order_line,access_jl_sample_order_line,model_jl_sample_order_line,,1,1,1,1
+access_jl_sample_picking,access_jl_sample_picking,model_jl_sample_picking,,1,1,1,1
+access_jl_sample_picking_line,access_jl_sample_picking_line,model_jl_sample_picking_line,,1,1,1,1
+access_jl_sample_in,access_jl_sample_in,model_jl_sample_in,,1,1,1,1

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--根菜单-->
+        <menuitem id="jl_sample_menu" name="样品业务" groups="jinling_sample.jinling_sample_groups"/>
+        <menuitem id="jl_sample_root_menu" name="样品管理" parent="jl_sample_menu" sequence="1"/>
+        <menuitem id="jl_sample_setting_menu" name="设置" parent="jl_sample_menu" sequence="2"/>
+
+        <menuitem id="jl_sample_goods_menu" name="商品" action="jinling_goods.goods_action" parent="jinling_sample.jl_sample_setting_menu" sequence="10"/>
+
+
+        <record id="jl_sample_apply_action" model="ir.actions.act_window">
+            <field name="name">样品申请单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.sample.apply</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_sample_apply_menu" name="样品申请单" action="jl_sample_apply_action" parent="jinling_sample.jl_sample_root_menu" sequence="10" groups="jinling_sample.jinling_sample_apply_groups"/>
+
+        <record id="jl_sample_order_action" model="ir.actions.act_window">
+            <field name="name">样品订单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.sample.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_sample_order_menu" name="样品订单" action="jl_sample_order_action" parent="jinling_sample.jl_sample_root_menu" sequence="20" groups="jinling_sample.jinling_sample_order_groups"/>
+
+        <record id="jl_sample_picking_action" model="ir.actions.act_window">
+            <field name="name">样品领料单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.sample.picking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_sample_picking_menu" name="样品领料单" action="jl_sample_picking_action" parent="jinling_sample.jl_sample_root_menu" sequence="30" groups="jinling_sample.jinling_sample_picking_groups"/>
+
+        <record id="jl_sample_in_action" model="ir.actions.act_window">
+            <field name="name">样品入库单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jl.sample.in</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="jl_sample_in_menu" name="样品入库单" action="jl_sample_in_action" parent="jinling_sample.jl_sample_root_menu" sequence="40" groups="jinling_sample.jinling_sample_in_groups"/>
+
+    </data>
+</odoo>

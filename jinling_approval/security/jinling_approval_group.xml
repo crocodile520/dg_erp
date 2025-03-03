@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- 审批管理组 -->
+        <record id="module_approval_category" model="ir.module.category">
+            <field name="name">审批管理</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- 审批用户组 -->
+        <record id="group_approval_user" model="res.groups">
+            <field name="name">用户</field>
+            <field name="category_id" ref="module_approval_category"/>
+        </record>
+
+        <!-- 审批管理员组 -->
+        <record id="group_approval_manager" model="res.groups">
+            <field name="name">管理员</field>
+            <field name="category_id" ref="module_approval_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_approval_user'))]"/>
+        </record>
+    </data>
+</odoo> 

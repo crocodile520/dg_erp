@@ -4,3 +4,4 @@ access_uom,access_uom,model_uom,,1,1,1,1
 access_goods_class,access_goods_class,model_goods_class,,1,1,1,1
 access_goods_bom,access_goods_bom,model_goods_bom,,1,1,1,1
 access_goods_bom_line,access_goods_bom_line,model_goods_bom_line,,1,1,1,1
+access_goods_bom_file,access_goods_bom_file,model_goods_bom_file,,1,1,1,1

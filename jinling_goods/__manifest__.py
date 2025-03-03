@@ -14,6 +14,7 @@
         'views/uom_view.xml',
         'views/goods_class_view.xml',
         'views/goods_bom_view.xml',
+        'views/goods_bom_file_view.xml',
         'menu/menu.xml'
     ],
     'assets': {
