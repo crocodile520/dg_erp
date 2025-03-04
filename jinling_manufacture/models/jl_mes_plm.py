@@ -121,7 +121,7 @@ class LxMesPlm(models.Model):
             'plm_id':self.id,
             'goods_id':self.goods_id.id,
             'warehouse_id':self.warehouse_id.id,
-            'qty':self.qty - self.done_qty,
+            'qty':self.qty - self.buy_qty,
             'type':'in'
         })
 
