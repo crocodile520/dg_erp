@@ -4,8 +4,9 @@
         <field name="name">Jl Buy Order Tree</field>
         <field name="model">jl.buy.order</field>
         <field name="arch" type="xml">
-            <tree string="采购订单" delete="0" create="0">
+            <tree string="采购订单" delete="0" create="0" js_class="jl_buy_order_list_view">
                 <field name="name" optional="show"/>
+                <field name="date" optional="show"/>
                 <field name="apply_id" optional="show"/>
                 <field name="user_id" optional="show"/>
                 <field name="apply_user_id" optional="show"/>
@@ -108,17 +109,35 @@
         </field>
     </record>
 
-    <record id='jl_buy_order_tree_search' model='ir.ui.view'>
-        <field name='name'>jl.buy.order.search</field>
-        <field name='model'>jl.buy.order</field>
-        <field name='arch' type='xml'>
-            <search string='采购订单搜索'>
-                <field name='name'/>
-                <field name='apply_id'/>
-                <field name='apply_user_id'/>
-                <filter name='draft' string='草稿' domain="[('state','=','draft')]"/>
-                <filter name='done' string='确认' domain="[('state','=','done')]"/>
+    <record id="jl_buy_order_tree_search" model="ir.ui.view">
+        <field name="name">jl.buy.order.search</field>
+        <field name="model">jl.buy.order</field>
+        <field name="arch" type="xml">
+            <search string="采购订单搜索">
+                <field name="name"/>
+                <field name="apply_id"/>
+                <field name="apply_user_id"/>
+                <filter name="draft" string="草稿" domain="[('state','=','draft')]"/>
+                <filter name="done" string="确认" domain="[('state','=','done')]"/>
+
+                <!-- 今天 -->
+                <filter name="today" string="今天" domain="[('date', '=', current_date)]"/>
+
+                <!-- 本周 -->
+                <filter name="this_week" string="本周" domain="[('date', '&gt;=', context_today().strftime('%%Y-%%m-%%d')),
+                                                         ('date', '&lt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%%Y-%%m-%%d'))]"/>
+
+                <!-- 本月 -->
+                <filter name="this_month" string="本月"
+                        domain="[('date', '&gt;=', context_today().replace(day=1).strftime('%%Y-%%m-%%d'))]"/>
+                <!-- 上个月 -->
+                <filter name="last_month" string="上个月"
+                        domain="[('date', '&gt;=', (context_today().replace(day=1) - relativedelta(months=1)).strftime('%%Y-%%m-%%d')),
+                 ('date', '&lt;', context_today().replace(day=1).strftime('%%Y-%%m-%%d'))]"/>
+
+
             </search>
         </field>
     </record>
+
 </odoo>

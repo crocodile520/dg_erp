@@ -11,6 +11,7 @@ class JlBuyPaymentApply(models.Model):
     _name = 'jl.buy.payment.apply'
     _description = '付款申请单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

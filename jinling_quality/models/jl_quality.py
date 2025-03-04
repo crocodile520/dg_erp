@@ -20,6 +20,7 @@ class JlQuality(models.Model):
     _name = 'jl.quality'
     _description = '质量检验单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

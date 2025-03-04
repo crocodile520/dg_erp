@@ -12,6 +12,7 @@ class JlBuyApply(models.Model):
     _name = 'jl.buy.apply'
     _description = '采购申请单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
     def button_done(self):
         '''确认后产生采购订单'''

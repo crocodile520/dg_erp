@@ -18,6 +18,7 @@ class JlMesPlmRefund(models.Model):
     _name = 'jl.mes.plm.refund'
     _description = '生产退料单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
     def button_done(self):
         self.ensure_one()

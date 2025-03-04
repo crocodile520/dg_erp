@@ -19,6 +19,7 @@ class LxMesPlm(models.Model):
     _name = "jl.mes.plm"
     _description = "生产工单"
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

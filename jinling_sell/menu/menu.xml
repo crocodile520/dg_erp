@@ -3,7 +3,8 @@
     <data>
         <menuitem id="sell_menu" name="销售业务" groups="jinling_sell.jinling_sell_groups"/>
         <menuitem id="sell_order_root" name="销售管理" parent="sell_menu" sequence="1"/>
-        <menuitem id="sell_order_data" name="主数据" parent="sell_menu" sequence="2"/>
+        <menuitem id="sell_order_report" name="报表" parent="sell_menu" sequence="2"/>
+        <menuitem id="sell_order_data" name="主数据" parent="sell_menu" sequence="3"/>
 
         <record id="sell_apply_action" model="ir.actions.act_window">
             <field name="name">销售申请单</field>
@@ -69,6 +70,36 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="jl_sell_shop_menu" name="销售店铺" action="jl_sell_shop_action" parent="sell_order_data" sequence="40"/>
+
+        <record id='jl_sell_order_report_action' model='ir.actions.act_window' >
+        <field name='name'>销售员统计表</field>
+        <field name='res_model'>jl.sell.order.report</field>
+        <field name='view_mode'>tree</field>
+        <field name='view_id' ref='jl_sell_order_report_tree' />
+        <field name="target">main</field>
+        </record>
+        <menuitem id="jl_sell_order_report_menu" name="销售员统计表" action="jl_sell_order_report_action" parent="sell_order_report" sequence="10"/>
+
+        <record id='jl_sell_order_total_report_action' model='ir.actions.act_window' >
+        <field name='name'>销售员总业绩统计表</field>
+        <field name='res_model'>jl.sell.order.total.report</field>
+        <field name='view_mode'>tree</field>
+        <field name='view_id' ref='jl_sell_order_total_report_tree' />
+        <field name="target">main</field>
+        </record>
+        <menuitem id="jl_sell_order_total_report_menu" name="销售员总业绩统计表" action="jl_sell_order_total_report_action" parent="sell_order_report" sequence="20"/>
+
+
+         <!-- 销售员统计表筛选-->
+        <record id="action_jl_sell_order_wizard" model="ir.actions.act_window">
+            <field name="name">销售员统计表筛选</field>
+            <field name="res_model">jl.sell.order.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="jl_sell_order_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="jl_sell_order_wizard_menu" name="销售员统计表筛选" action="action_jl_sell_order_wizard" parent="sell_order_report" sequence="30"/>
 
 
     </data>

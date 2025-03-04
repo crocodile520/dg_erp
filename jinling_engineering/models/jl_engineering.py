@@ -18,6 +18,7 @@ class JlEngineering(models.Model):
     _name = 'jl.engineering'
     _description = '工程工单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

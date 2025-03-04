@@ -5,7 +5,7 @@
     'description':'用于金凌电子采购管理',
     'version': '16.0',
     'license': 'LGPL-3',
-    'depends': ['mail','jinling_warehouse','jinling_goods',],
+    'depends': ['mail','web','jinling_warehouse','jinling_goods',],
     'data': [
         'security/jinling_buy_group.xml',
         'security/ir.model.access.csv',
@@ -19,8 +19,16 @@
         'views/jl_buy_price_strategy_view.xml',
         'report/paperformat.xml',
         'report/report_buy_order_template.xml',
+        'report/jl_buy_order_report_view.xml',
+        'report/jl_buy_order_report_search_view.xml',
+        'wizards/jl_buy_order_wizard_view.xml',
         'menu/menu.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'jinling_buy/static/src/js/list_color.js',
+        ],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,

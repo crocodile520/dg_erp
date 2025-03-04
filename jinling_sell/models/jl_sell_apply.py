@@ -27,6 +27,7 @@ class SellApply(models.Model):
     _name = 'sell.apply'
     _description = '销售申请单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
     def button_done(self):

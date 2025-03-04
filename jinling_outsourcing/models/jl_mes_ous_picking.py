@@ -24,6 +24,7 @@ class JlMesOusPicking(models.Model):
     _name = 'jl.mes.ous.picking'
     _description = '委外生产领料单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
     def button_done(self):
         self.ensure_one()

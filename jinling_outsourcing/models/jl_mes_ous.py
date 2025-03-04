@@ -24,6 +24,7 @@ class LxMesOus(models.Model):
     _name = "jl.mes.ous"
     _description = "委外生产工单"
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

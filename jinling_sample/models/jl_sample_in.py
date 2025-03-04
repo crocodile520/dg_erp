@@ -27,7 +27,7 @@ class JlSampleIn(models.Model):
     _name = 'jl.sample.in'
     _description = '样品入库单'
     _inherit = ['mail.thread']
-
+    _order = 'date desc, id desc'
 
     def button_done(self):
         self.ensure_one()

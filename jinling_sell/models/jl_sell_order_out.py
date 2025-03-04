@@ -19,6 +19,7 @@ class SellOrderOut(models.Model):
     _name = 'sell.order.out'
     _description = '销售发货单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

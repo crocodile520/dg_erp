@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    	<record id="jl_sell_order_total_report_tree" model="ir.ui.view">
+            <field name="name">jl.sell.order.total.report.tree</field>
+            <field name="model">jl.sell.order.total.report</field>
+            <field name="arch" type="xml">
+                <tree string="销售员总业绩    统计表" create="false" delete="0">
+                	<field name="user_id" optional="show" />
+                	<field name="qty" sum="数量合计" />
+                	<field name="out_qty" sum="数量合计" />
+                	<field name="amount" sum="数量合计" />
+                	<field name="subtotal" sum="数量合计" />
+                </tree>
+            </field>
+        </record>
+        <record id="jl_sell_order_total_report_tree_search" model="ir.ui.view">
+            <field name="name">jl.sell.order.total.report.search</field>
+            <field name="model">jl.sell.order.total.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="user_id"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

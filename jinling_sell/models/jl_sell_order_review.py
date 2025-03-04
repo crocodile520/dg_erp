@@ -22,6 +22,7 @@ class SellOrderReview(models.Model):
     _name = 'sell.order.review'
     _description = '销售评审单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
     def button_done(self):

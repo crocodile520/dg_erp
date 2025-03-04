@@ -26,6 +26,7 @@ class JlOusQuality(models.Model):
     _name = 'jl.ous.quality'
     _description = '委外质量检验单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

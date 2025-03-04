@@ -19,6 +19,10 @@
         'views/jl_sell_shop_view.xml',
         'report/paperformat.xml',
         'report/report_sell_out_template.xml',
+        'report/jl_sell_order_report_view.xml',
+        'report/jl_sell_order_total_report_view.xml',
+        'report/jl_sell_order_report_search_view.xml',
+        'wizards/jl_sell_order_wizard_view.xml',
         'menu/menu.xml',
 
     ],

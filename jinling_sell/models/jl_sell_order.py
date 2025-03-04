@@ -39,6 +39,7 @@ class SellOrder(models.Model):
     _name = 'sell.order'
     _description = '销售订单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

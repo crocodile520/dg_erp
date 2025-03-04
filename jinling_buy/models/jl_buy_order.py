@@ -22,6 +22,7 @@ class JlBuyOrder(models.Model):
     _name = 'jl.buy.order'
     _description = '采购订单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
     def get_move_line(self, line, move_id):
         '''返回采购入库行'''

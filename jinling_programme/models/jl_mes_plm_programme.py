@@ -3,6 +3,7 @@ from odoo import api,fields,models,tools
 class JlMesPlmProgrammeReport(models.Model):
     _name = 'jl.mes.plm.programme'
     _description = '生产计划'
+    _order = 'date desc, id desc'
 
     plm_id = fields.Many2one('jl.mes.plm', '生产工单', ondelete='cascade', help='绑定生产工单')
     lock = fields.Boolean('锁定',default=False)

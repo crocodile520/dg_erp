@@ -18,6 +18,7 @@ class JlSampleApply(models.Model):
     _name = 'jl.sample.apply'
     _description = '样品申请单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
 

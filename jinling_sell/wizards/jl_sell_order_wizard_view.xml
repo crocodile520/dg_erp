@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="jl_sell_order_wizard_form" model="ir.ui.view">
+            <field name="name">销售员统计表筛选</field>
+            <field name="model">jl.sell.order.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="goods_id"/>
+                            <field name="user_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_confirm" type="object" string="确认" class="oe_highlight"/>
+                        <button special="cancel" string="取消"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    	<record id="jl_buy_order_report_tree" model="ir.ui.view">
+            <field name="name">jl.buy.order.report.tree</field>
+            <field name="model">jl.buy.order.report</field>
+            <field name="arch" type="xml">
+                <tree string="采购购货统计表" create="false" delete="0">
+                	<field name="goods_id" optional="show" />
+                	<field name="describe" optional="show" />
+                	<field name="specs" optional="show" />
+                	<field name="surface" optional="show" />
+                	<field name="goods_class_id" optional="show" />
+                	<field name="uom_id" optional="show" />
+                	<field name="qty" sum="数量合计" />
+                	<field name="buy_qty" sum="数量合计" />
+                	<field name="amount" sum="数量合计" />
+                	<field name="subtotal" sum="数量合计" />
+                </tree>
+            </field>
+        </record>
+        <record id="jl_buy_report_report_tree_search" model="ir.ui.view">
+            <field name="name">jl.buy.order.report.search</field>
+            <field name="model">jl.buy.order.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="goods_id"/>
+                    <field name="goods_class_id"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

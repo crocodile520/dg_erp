@@ -17,6 +17,7 @@ class JlReconciliation(models.Model):
     _name = 'jl.reconciliation'
     _description = '对账单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
     def button_done(self):

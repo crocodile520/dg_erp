@@ -4,7 +4,8 @@
         <!--根菜单-->
         <menuitem id="jinling_buy_menu" name="采购业务" groups="jinling_buy.jinling_buy_groups"/>
         <menuitem id="buy_menu" name="采购管理" parent="jinling_buy_menu" sequence="1"/>
-        <menuitem id="buy_menu_data" name="主数据" parent="jinling_buy_menu" sequence="2"/>
+        <menuitem id="buy_menu_report" name="报表" parent="jinling_buy_menu" sequence="2"/>
+        <menuitem id="buy_menu_data" name="主数据" parent="jinling_buy_menu" sequence="3"/>
 
         <record id="supplier_action" model="ir.actions.act_window">
             <field name="name">供应商</field>
@@ -96,5 +97,25 @@
             <field name="context">{}</field>
         </record>
         <menuitem id="jl_buy_price_strategy_menu" name="采购价格策略" action="jl_buy_price_strategy_action" parent="buy_menu_data" sequence="30" groups="jinling_buy.jinling_buy_price_strategy_groups"/>
+
+        <record id='jl_buy_order_report_action' model='ir.actions.act_window' >
+        <field name='name'>采购购货统计表</field>
+        <field name='res_model'>jl.buy.order.report</field>
+        <field name='view_mode'>tree</field>
+        <field name='view_id' ref='jl_buy_order_report_tree' />
+        <field name="target">main</field>
+        </record>
+        <menuitem id="jl_buy_order_report_menu" name="采购购货统计表" action="jl_buy_order_report_action" parent="buy_menu_report" sequence="10"/>
+
+         <!-- 采购购货统计筛选-->
+        <record id="action_jl_buy_order_wizard" model="ir.actions.act_window">
+            <field name="name">采购购货统计筛选</field>
+            <field name="res_model">jl.buy.order.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="jl_buy_order_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="jl_buy_order_wizard_menu" name="采购购货统计筛选" action="action_jl_buy_order_wizard" parent="buy_menu_report" sequence="20"/>
     </data>
 </odoo>

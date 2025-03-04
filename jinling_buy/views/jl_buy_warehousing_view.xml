@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <tree string="采购入库单" delete="0" create="0">
                 <field name="name" optional="show"/>
+                <field name="date" optional="show"/>
                 <field name="order_id" optional="show"/>
                 <field name="user_id" optional="show"/>
                 <field name="supplier_id" optional="show"/>

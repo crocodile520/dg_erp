@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <tree string="销售申请单" delete="0">
                     <field name="name" optional="show"/>
+                    <field name="date" optional="show"/>
                     <field name="user_id" optional="show"/>
                     <field name="ref" optional="show"/>
                     <field name="partner_id" optional="show"/>

@@ -20,6 +20,7 @@ class JlMesPlmIn(models.Model):
     _name = 'jl.mes.plm.in'
     _description = '生产入库单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
 
     def button_done(self):

@@ -25,6 +25,7 @@ class JlMesOusRefund(models.Model):
     _name = 'jl.mes.ous.refund'
     _description = '委外生产退料单'
     _inherit = ['mail.thread']
+    _order = 'date desc, id desc'
 
     def button_done(self):
         self.ensure_one()

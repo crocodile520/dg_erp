@@ -13,6 +13,7 @@ class JlBuyWarehousing(models.Model):
     _description = '采购入库单'
     _inherits = {'jl.move': 'buy_move_id'}
     _inherit = ['mail.thread']
+    _order = 'id desc'
 
 
 
