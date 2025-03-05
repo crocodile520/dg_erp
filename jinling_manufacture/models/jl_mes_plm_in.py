@@ -27,6 +27,7 @@ class JlMesPlmIn(models.Model):
         self.ensure_one()
         if self.state == 'done':
             raise UserError('单据已经确认，请勿重复确认')
+        print(self.quality_id,self.quality_id.in_qty,'打印')
         if float(self.qty) + float(self.quality_id.in_qty) > float(self.quality_id.qty):
             raise UserError("入库数量不可以大于生产订单数量")
         self.quality_id.write({
