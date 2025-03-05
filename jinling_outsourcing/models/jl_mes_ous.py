@@ -67,7 +67,9 @@ class LxMesOus(models.Model):
         self.ensure_one()
         if self.done_qty <= 0:
             raise UserError('完工数量不可以等于小于0')
-        self.create_quality()
+        if self.qty >= self.done_qty:
+            raise UserError('完工数量不等于生产数量，不允许确认，请认真确认完工数量是否都完成了！')
+        # self.create_quality()
         self.write({
             'state': 'done',
             'approve_uid': self.env.uid,
@@ -114,11 +116,16 @@ class LxMesOus(models.Model):
 
     def create_quality(self):
         '''生产完成产生委外质检单'''
+        if self.qty - self.done_qty < 0:
+            raise UserError('完工数量不可以大于生产数量!')
+        ids = self.env['jl.ous.quality'].search([('ous_id', '=', self.id), ('state', '=', 'draft')])
+        if any(ids):
+            ids.unlink()
         self.env['jl.ous.quality'].create({
             'ous_id':self.id,
             'goods_id':self.goods_id.id,
             'warehouse_id':self.warehouse_id.id,
-            'qty':self.qty,
+            'qty': self.qty - self.buy_qty,
             'type':'in'
         })
 
