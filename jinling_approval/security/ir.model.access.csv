@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_approval_mixin,access_approval_mixin,model_approval_mixin,,1,1,1,1
-access_jl_approval_model,access_jl_approval_model,model_jl_approval_model,,1,1,1,1
-access_jl_approval_model_field,access_jl_approval_model_field,model_jl_approval_model_field,,1,1,1,1
-access_jl_approval_process,access_jl_approval_process,model_jl_approval_process,,1,1,1,1
-access_jl_approval_process_node,access_jl_approval_process_node,model_jl_approval_process_node,,1,1,1,1
-access_jl_approval_record,access_jl_approval_record,model_jl_approval_record,,1,1,1,1
-access_jl_approval_record_line,access_jl_approval_record_line,model_jl_approval_record_line,,1,1,1,1

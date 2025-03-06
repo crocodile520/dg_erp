@@ -41,10 +41,10 @@ class SellOrderOut(models.Model):
                 if line.qty > line.ms1_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
             elif line.warehouse_id.id == 2:
-                if line.qty > line.gms1_qty:
+                if line.qty > line.ms2_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
             elif line.warehouse_id.id == 3:
-                if line.qty > line.gms1_qty:
+                if line.qty > line.ms2_qty:
                     raise UserError('%s商品发货库存数量不足' % line.goods_id.name)
             # if not line.weight:
             #     raise UserError('%s商品请填写重量' % line.goods_id.name)

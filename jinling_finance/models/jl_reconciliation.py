@@ -88,6 +88,7 @@ class JlReconciliation(models.Model):
                                   copy=False,
                                   ondelete='restrict',
                                   help='确认单据的人')
+    approve_date = fields.Datetime('确认日期', copy=False)
 
 
 class JlReconciliationLine(models.Model):
