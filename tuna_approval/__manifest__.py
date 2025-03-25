@@ -1,0 +1,22 @@
+{
+    'name': '审批流模块',
+    'author': 'Tuna团队',
+    'category': '',
+    'description':'审批流模块',
+    'version': '16.0',
+    'license': 'LGPL-3',
+    'depends': ['mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/approval_group.xml',
+        'data/sequence.xml',
+        'views/approval_model_view.xml',
+        'views/approval_record_view.xml',
+        'views/approval_process_view.xml',
+        'wizards/approval_transfer_wizard_view.xml',
+        'menu/menu.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}
