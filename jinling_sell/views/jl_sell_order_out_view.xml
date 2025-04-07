@@ -33,6 +33,10 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
+                            <button name="action_get_attachment_view" class="oe_stat_button" icon="fa-book"
+                                    type="object">
+                                <field name="attachment_number" widget="statinfo" string="文件上传"/>
+                            </button>
                             <button type="object"
                                 name="action_rec_view"
                                 class="oe_stat_button"
@@ -64,7 +68,7 @@
                                 <field name='line_ids' attrs="{'readonly': [('state', '!=', 'draft')]}">
                                     <tree string="销售发货单明细" editable='bottom'>
                                         <field name="ref" optional="show"/>
-                                        <field name="goods_id" optional="show"/>
+                                        <field name="goods_id" optional="show" readonly="1"/>
                                         <field name="describe" optional="show"/>
                                         <field name="specs" optional="show"/>
                                         <field name="surface" optional="show"/>

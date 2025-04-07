@@ -242,6 +242,27 @@ class SellOrderOut(models.Model):
             else:
                 record.amount_total_words = '零元整'
 
+    def action_get_attachment_view(self):
+        """附件上传动作视图"""
+        self.ensure_one()
+        res = self.env.ref("base.action_attachment").sudo().read()[0]
+        res["domain"] = [("res_model", "=", self._name), ("res_id", "in", self.ids)]
+        res["context"] = {"default_res_model": self._name, "default_res_id": self.id}
+        return res
+
+    def _compute_attachment_number(self):
+        """附件上传"""
+        attachment_data = self.env["ir.attachment"].read_group(
+            [("res_model", "=", self._name), ("res_id", "in", self.ids)],
+            ["res_id"],
+            ["res_id"],
+        )
+        attachment = dict(
+            (data["res_id"], data["res_id_count"]) for data in attachment_data
+        )
+        for expense in self:
+            expense.attachment_number = attachment.get(expense.id, 0)
+
     name = fields.Char('单据编号',
                        index=True,
                        copy=False,
@@ -275,6 +296,9 @@ class SellOrderOut(models.Model):
     carriage = fields.Float('运费', digits='Amount')
     amount_total_words = fields.Char('大写金额',compute='_compute_amount_total_words')
     shop_id = fields.Many2one('sell.shop', '店铺', ondelete='cascade', help='销售店铺')
+    attachment_number = fields.Integer(
+        compute="_compute_attachment_number", string="附件上传"
+    )
 
 
 class SellOrderOutLine(models.Model):
