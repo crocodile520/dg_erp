@@ -58,7 +58,7 @@ class JlMesPlmIn(models.Model):
             })]
         })
 
-        if self.quality_id.qty - self.quality_id.in_qty > 0:
+        if self.quality_id.qualified_qty - self.quality_id.in_qty > 0:
             self.env['jl.mes.ous.in'].create({
                 'ous_id': self.ous_id.id,
                 'quality_id': self.quality_id.id,

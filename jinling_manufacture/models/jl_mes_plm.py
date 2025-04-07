@@ -116,6 +116,10 @@ class LxMesPlm(models.Model):
         self.ensure_one()
         if self.qty - self.done_qty < 0:
             raise UserError('完工数量不可以大于生产数量!')
+        picking_ids = self.env['jl.mes.plm.picking'].sudo().search([('plm_id','=',self.id),('state','=','draft')])
+        if any(picking_ids):
+            if picking_ids.filtered(lambda _l:_l.state == 'draft'):
+                raise UserError("您有领料单未领料不准质检！")
         ids = self.env['jl.quality'].search([('plm_id','=',self.id),('state','=','draft')])
         if any(ids):
             ids.unlink()

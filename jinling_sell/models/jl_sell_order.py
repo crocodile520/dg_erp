@@ -351,7 +351,7 @@ class SellOrderLine(models.Model):
             self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount
 
-    @api.onchange('goods_id')
+    @api.onchange('goods_id','order_id.partner_id')
     def _compute_goods_price(self):
         cr = self._cr
         ids = self.goods_id.ids
@@ -366,9 +366,9 @@ class SellOrderLine(models.Model):
                                   jl_sell_price_strategy
                                 where
                                 active = TRUE
-                                  and state = 'done' and goods_id in ({ids})
+                                  and state = 'done' and goods_id in ({ids}) and partner_id = {partner_id}
 
-                        """.format(**{'ids': ','.join([str(id) for id in ids])}))
+                        """.format(**{'ids': ','.join([str(id) for id in ids]),'partner_id':self.order_id.partner_id.id}))
             for line in cr.dictfetchall():
                 stock.update({
                     line['goods_id']: [line['price'], line['tax_rate']]})
@@ -379,6 +379,7 @@ class SellOrderLine(models.Model):
                 if _d.goods_id.id in stock.keys():
                     _d.price = stock[_d.goods_id.id][0]
                     _d.tax_rate = stock[_d.goods_id.id][1]
+                    _d.tax_price = round(_d.price * (1 + (_d.tax_rate / 100)), 4)
 
     order_id = fields.Many2one('sell.order','销售订单',ondelete='cascade')
     ref = fields.Char('客户订单号',related='order_id.ref')

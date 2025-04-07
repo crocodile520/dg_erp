@@ -133,7 +133,7 @@ class JlBuyApplyLine(models.Model):
             self.subtotal = self.qty * self.tax_price
             self.tax_amount = self.subtotal - self.amount
 
-    @api.depends('goods_id')
+    @api.depends('goods_id','buy_apply_id.supplier_id')
     def _compute_goods_price(self):
         cr = self._cr
         ids = self.goods_id.ids
@@ -148,9 +148,9 @@ class JlBuyApplyLine(models.Model):
                               jl_buy_price_strategy
                             where
                             active = TRUE
-                              and state = 'done' and goods_id in ({ids})
+                              and state = 'done' and goods_id in ({ids}) and supplier_id = {supplier_id}
 
-                    """.format(**{'ids': ','.join([str(id) for id in ids])}))
+                    """.format(**{'ids': ','.join([str(id) for id in ids]),'supplier_id':self.buy_apply_id.supplier_id.id}))
             for line in cr.dictfetchall():
                 stock.update({
                     line['goods_id']: [line['price'],line['tax_rate']]})
@@ -161,6 +161,7 @@ class JlBuyApplyLine(models.Model):
                 if _d.goods_id.id in stock.keys():
                     _d.price = stock[_d.goods_id.id][0]
                     _d.tax_rate = stock[_d.goods_id.id][1]
+                    _d.tax_price = round(_d.price * (1 + (_d.tax_rate / 100)),4)
 
     buy_apply_id = fields.Many2one('jl.buy.apply', '采购申请单', index=True, ondelete='cascade')
     goods_id = fields.Many2one('goods', '商品', ondelete='cascade', help='购货商品')
@@ -173,7 +174,7 @@ class JlBuyApplyLine(models.Model):
     warehouse_id = fields.Many2one('warehouse', '仓库', help='关联仓库，购票物品存储某个仓库')
     qty = fields.Float('数量', digits='Quantity', )
     price = fields.Float('单价', digits='quantity', compute='_compute_goods_price')
-    tax_price = fields.Float('含税单价', digits='Price', compute='_compute_all_amount')
+    tax_price = fields.Float('含税单价', digits='Price')
     tax_rate = fields.Float('税率(%)', digits='Amount', )
     tax_amount = fields.Float('税额', digits='Amount', compute='_compute_all_amount')
     amount = fields.Float('金额', digits='Amount', compute='_compute_all_amount')
