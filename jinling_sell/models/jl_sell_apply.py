@@ -76,6 +76,12 @@ class SellApply(models.Model):
                 if id.state != 'draft':
                     raise UserError('不可以删除已经确定的销售订单')
                 else:
+                    move_ids = self.env['jl.move'].search([('order_id', '=', self.id)])
+                    if len(move_ids.filtered(lambda _l: _l.state == 'done').ids) > 0:
+                        raise UserError('移库单已经确认了无法撤销')
+                    else:
+                        for move_id in move_ids:
+                            move_id.unlink()
                     id.unlink()
         self.write({
             'state': 'draft'

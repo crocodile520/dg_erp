@@ -73,6 +73,7 @@ class SellOrder(models.Model):
         out_ids = self.env['sell.order.out'].search([('order_id','=',self.id)])
         review_ids = self.env['sell.order.review'].search([('order_id', '=', self.id)])
         plm_ids = self.env['jl.mes.plm'].search([('order_id','=',self.id)])
+
         eng_ids = self.env['jl.engineering'].search([('order_id','=',self.id)])
         pro_ids = self.env['jl.mes.plm.programme'].search([('order_id','=',self.id)])
         for pro_id in pro_ids:

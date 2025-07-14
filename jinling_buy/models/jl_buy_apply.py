@@ -57,6 +57,13 @@ class JlBuyApply(models.Model):
                 if id.state != 'draft':
                     raise UserError('不可以删除已经确定的采购订单')
                 else:
+                    move_ids = self.env['jl.move'].search([('order_id', '=', id.id)])
+                    if any(move_ids):
+                        for move_id in move_ids:
+                            if move_id.state != 'draft':
+                                raise UserError('不可以删除已经确定的移库订单')
+                            else:
+                                move_id.unlink()
                     id.unlink()
         self.write({
             'state': 'draft',
